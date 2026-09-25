@@ -1,0 +1,1480 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>
+        Reading Practice - IntelliLearn
+    </title>
+
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='style.css') }}">
+
+    <style>
+
+        /* =====================================================
+           READING PAGE
+        ===================================================== */
+
+        .reading-page {
+
+            max-width: 900px;
+
+            margin: 0 auto;
+
+            padding: 30px 20px 60px;
+
+        }
+
+
+        /* =====================================================
+           LESSON HEADER
+        ===================================================== */
+
+        .lesson-header {
+
+            background: white;
+
+            border-radius: 20px;
+
+            padding: 30px;
+
+            text-align: center;
+
+            box-shadow:
+                0 5px 20px rgba(0,0,0,0.08);
+
+            margin-bottom: 25px;
+
+        }
+
+
+        .lesson-big-icon {
+
+            font-size: 55px;
+
+            margin-bottom: 10px;
+
+        }
+
+
+        .lesson-header h1 {
+
+            margin: 5px 0 10px;
+
+            color: #333;
+
+        }
+
+
+        .lesson-header p {
+
+            color: #666;
+
+            line-height: 1.6;
+
+        }
+
+
+        /* =====================================================
+           PROGRESS
+        ===================================================== */
+
+        .question-progress {
+
+            margin-top: 20px;
+
+        }
+
+
+        .progress-bar {
+
+            width: 100%;
+
+            height: 10px;
+
+            background: #e8ece9;
+
+            border-radius: 20px;
+
+            overflow: hidden;
+
+        }
+
+
+        .progress-fill {
+
+            height: 100%;
+
+            width: {{ progress_percent|default(0) }}%;
+
+            background: #55a85f;
+
+            border-radius: 20px;
+
+            transition: width 0.3s ease;
+
+        }
+
+
+        .progress-label {
+
+            display: flex;
+
+            justify-content: space-between;
+
+            margin-top: 7px;
+
+            color: #777;
+
+            font-size: 13px;
+
+        }
+
+
+        /* =====================================================
+           LEARNING CONTENT
+        ===================================================== */
+
+        .learning-box {
+
+            background: white;
+
+            border-radius: 20px;
+
+            padding: 30px;
+
+            box-shadow:
+                0 5px 20px rgba(0,0,0,0.08);
+
+            margin-bottom: 25px;
+
+        }
+
+
+        .learning-box h2 {
+
+            color: #3f914d;
+
+            margin-top: 0;
+
+        }
+
+
+        .learning-word {
+
+            font-size: 48px;
+
+            font-weight: bold;
+
+            color: #3f914d;
+
+            text-align: center;
+
+            margin: 25px 0;
+
+        }
+
+
+        .meaning-box {
+
+            background: #f2f8f3;
+
+            padding: 15px;
+
+            border-radius: 12px;
+
+            margin: 15px 0;
+
+        }
+
+
+        .meaning-box strong {
+
+            color: #438f4d;
+
+        }
+
+
+        /* =====================================================
+           ALPHABET GRID
+        ===================================================== */
+
+        .alphabet-grid {
+
+            display: grid;
+
+            grid-template-columns:
+                repeat(auto-fit, minmax(60px, 1fr));
+
+            gap: 10px;
+
+            margin: 20px 0;
+
+        }
+
+
+        .alphabet-letter {
+
+            background: #eef8f0;
+
+            border: 1px solid #d8eadb;
+
+            border-radius: 12px;
+
+            padding: 15px 5px;
+
+            text-align: center;
+
+            font-size: 22px;
+
+            font-weight: bold;
+
+            color: #438f4d;
+
+        }
+
+
+        /* =====================================================
+           QUESTION CARD
+        ===================================================== */
+
+        .question-card {
+
+            background: white;
+
+            border-radius: 20px;
+
+            padding: 30px;
+
+            box-shadow:
+                0 5px 20px rgba(0,0,0,0.08);
+
+        }
+
+
+        .question-number {
+
+            color: #55a85f;
+
+            font-size: 14px;
+
+            font-weight: bold;
+
+            margin-bottom: 10px;
+
+        }
+
+
+        .question-card h2 {
+
+            font-size: 23px;
+
+            margin-bottom: 25px;
+
+            color: #222;
+
+            line-height: 1.5;
+
+        }
+
+
+        /* =====================================================
+           OPTIONS
+        ===================================================== */
+
+        .option {
+
+            display: block;
+
+            padding: 15px;
+
+            margin: 12px 0;
+
+            border: 2px solid #e1e6e2;
+
+            border-radius: 12px;
+
+            cursor: pointer;
+
+            transition: 0.2s;
+
+            background: #fff;
+
+        }
+
+
+        .option:hover {
+
+            border-color: #55a85f;
+
+            background: #f4faf5;
+
+        }
+
+
+        .option input {
+
+            margin-right: 10px;
+
+        }
+
+
+        /* =====================================================
+           TEXT INPUT
+        ===================================================== */
+
+        .answer-input {
+
+            width: 100%;
+
+            box-sizing: border-box;
+
+            padding: 14px;
+
+            border: 2px solid #dfe5e0;
+
+            border-radius: 10px;
+
+            font-size: 17px;
+
+            margin-bottom: 15px;
+
+        }
+
+
+        .answer-input:focus {
+
+            outline: none;
+
+            border-color: #55a85f;
+
+        }
+
+
+        /* =====================================================
+           BUTTON
+        ===================================================== */
+
+        .check-btn {
+
+            width: 100%;
+
+            padding: 14px;
+
+            border: none;
+
+            border-radius: 12px;
+
+            background: #55a85f;
+
+            color: white;
+
+            font-size: 16px;
+
+            font-weight: bold;
+
+            cursor: pointer;
+
+        }
+
+
+        .check-btn:hover {
+
+            background: #438f4d;
+
+        }
+
+
+        /* =====================================================
+           FEEDBACK
+        ===================================================== */
+
+        .feedback {
+
+            padding: 15px;
+
+            border-radius: 12px;
+
+            margin-top: 20px;
+
+            text-align: center;
+
+            font-weight: bold;
+
+        }
+
+
+        .correct {
+
+            background: #e8f7ea;
+
+            color: #277336;
+
+        }
+
+
+        .wrong {
+
+            background: #fff0f0;
+
+            color: #b23838;
+
+        }
+
+
+        /* =====================================================
+           WORD CARDS
+        ===================================================== */
+
+        .word-grid {
+
+            display: grid;
+
+            grid-template-columns:
+                repeat(auto-fit, minmax(130px, 1fr));
+
+            gap: 15px;
+
+            margin-top: 20px;
+
+        }
+
+
+        .word-card {
+
+            background: #f5faf6;
+
+            border: 1px solid #dcebdd;
+
+            padding: 18px;
+
+            border-radius: 14px;
+
+            text-align: center;
+
+        }
+
+
+        .word-card .english {
+
+            font-size: 22px;
+
+            font-weight: bold;
+
+            color: #3f914d;
+
+        }
+
+
+        .word-card .meaning {
+
+            margin-top: 8px;
+
+            color: #666;
+
+        }
+
+
+        /* =====================================================
+           BACK LINK
+        ===================================================== */
+
+        .back-link {
+
+            display: inline-block;
+
+            margin-top: 20px;
+
+            color: #438f4d;
+
+            text-decoration: none;
+
+            font-weight: bold;
+
+        }
+
+
+        /* =====================================================
+           MOBILE
+        ===================================================== */
+
+        @media (max-width: 600px) {
+
+            .reading-page {
+
+                padding: 20px 12px 40px;
+
+            }
+
+            .learning-box,
+            .question-card,
+            .lesson-header {
+
+                padding: 20px;
+
+            }
+
+            .learning-word {
+
+                font-size: 38px;
+
+            }
+
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+
+<!-- =====================================================
+     NAVIGATION
+===================================================== -->
+
+<nav class="navbar">
+
+    <div class="logo">
+        🌱 IntelliLearn
+    </div>
+
+
+    <div class="nav-links">
+
+        <a href="/">
+            {{ t("home") }}
+        </a>
+
+        <a href="/dashboard">
+            {{ t("dashboard") }}
+        </a>
+
+        <a href="/learn">
+            {{ t("learn") }}
+        </a>
+
+        <a href="/voice">
+            {{ t("voice") }}
+        </a>
+
+        <a href="/progress">
+            {{ t("progress") }}
+        </a>
+
+        <a href="/profile">
+            {{ t("profile") }}
+        </a>
+
+        <a href="/logout">
+            {{ t("logout") }}
+        </a>
+
+    </div>
+
+</nav>
+
+
+
+<!-- =====================================================
+     READING PAGE
+===================================================== -->
+
+<div class="reading-page">
+
+
+    <!-- =================================================
+         LESSON HEADER
+    ================================================== -->
+
+    <div class="lesson-header">
+
+        <div class="lesson-big-icon">
+
+            {% if lesson == "alphabet" %}
+                🔤
+
+            {% elif lesson == "sounds" %}
+                🔊
+
+            {% elif lesson == "recognition" %}
+                🧠
+
+            {% elif lesson == "words" %}
+                📖
+
+            {% elif lesson == "family" %}
+                👨‍👩‍👧
+
+            {% elif lesson == "food" %}
+                🍎
+
+            {% elif lesson == "colors" %}
+                🎨
+
+            {% elif lesson == "numbers" %}
+                🔢
+
+            {% elif lesson == "animals" %}
+                🐶
+
+            {% else %}
+                📖
+            {% endif %}
+
+        </div>
+
+
+        <h1>
+
+            {% if lesson == "alphabet" %}
+                Alphabet A–Z
+
+            {% elif lesson == "sounds" %}
+                Letter Sounds
+
+            {% elif lesson == "recognition" %}
+                Letter Recognition
+
+            {% elif lesson == "words" %}
+                Everyday Words
+
+            {% elif lesson == "family" %}
+                Family Words
+
+            {% elif lesson == "food" %}
+                Food & Drinks
+
+            {% elif lesson == "colors" %}
+                Colors
+
+            {% elif lesson == "numbers" %}
+                Numbers 1–10
+
+            {% elif lesson == "animals" %}
+                Animals
+
+            {% else %}
+                Reading Practice
+            {% endif %}
+
+        </h1>
+
+
+        <p>
+
+            {% if lesson == "alphabet" %}
+
+                Learn the English alphabet from A to Z.
+
+            {% elif lesson == "sounds" %}
+
+                Learn how letters sound in simple words.
+
+            {% elif lesson == "recognition" %}
+
+                Practice identifying uppercase and lowercase letters.
+
+            {% elif lesson == "words" %}
+
+                Learn common words used in everyday life.
+
+            {% elif lesson == "family" %}
+
+                Learn common words about family members.
+
+            {% elif lesson == "food" %}
+
+                Learn common food and drink words.
+
+            {% elif lesson == "colors" %}
+
+                Learn basic colors in English.
+
+            {% elif lesson == "numbers" %}
+
+                Learn numbers from 1 to 10.
+
+            {% elif lesson == "animals" %}
+
+                Learn common names of animals.
+
+            {% endif %}
+
+        </p>
+
+
+        <!-- Progress -->
+
+        <div class="question-progress">
+
+            <div class="progress-bar">
+
+                <div class="progress-fill"
+                     style="width: {{ progress_percent|default(0) }}%;">
+
+                </div>
+
+            </div>
+
+
+            <div class="progress-label">
+
+                <span>
+                    Question {{ question_number|default(1) }}
+                    of {{ total_questions|default(10) }}
+                </span>
+
+                <span>
+                    ⭐ {{ user["xp"] if user else 0 }} XP
+                </span>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+
+    <!-- =================================================
+         ALPHABET LEARNING MATERIAL
+    ================================================== -->
+
+    {% if lesson == "alphabet" %}
+
+    <div class="learning-box">
+
+        <h2>
+            🔤 Learn the Alphabet
+        </h2>
+
+        <p>
+            The English alphabet has 26 letters.
+            Let's learn them step by step.
+        </p>
+
+
+        <div class="alphabet-grid">
+
+            <div class="alphabet-letter">A</div>
+            <div class="alphabet-letter">B</div>
+            <div class="alphabet-letter">C</div>
+            <div class="alphabet-letter">D</div>
+            <div class="alphabet-letter">E</div>
+            <div class="alphabet-letter">F</div>
+            <div class="alphabet-letter">G</div>
+            <div class="alphabet-letter">H</div>
+            <div class="alphabet-letter">I</div>
+            <div class="alphabet-letter">J</div>
+            <div class="alphabet-letter">K</div>
+            <div class="alphabet-letter">L</div>
+            <div class="alphabet-letter">M</div>
+            <div class="alphabet-letter">N</div>
+            <div class="alphabet-letter">O</div>
+            <div class="alphabet-letter">P</div>
+            <div class="alphabet-letter">Q</div>
+            <div class="alphabet-letter">R</div>
+            <div class="alphabet-letter">S</div>
+            <div class="alphabet-letter">T</div>
+            <div class="alphabet-letter">U</div>
+            <div class="alphabet-letter">V</div>
+            <div class="alphabet-letter">W</div>
+            <div class="alphabet-letter">X</div>
+            <div class="alphabet-letter">Y</div>
+            <div class="alphabet-letter">Z</div>
+
+        </div>
+
+
+        <div class="meaning-box">
+
+            <strong>A</strong> → Apple 🍎
+
+            <br><br>
+
+            <strong>B</strong> → Ball ⚽
+
+            <br><br>
+
+            <strong>C</strong> → Cat 🐱
+
+            <br><br>
+
+            <strong>D</strong> → Dog 🐶
+
+        </div>
+
+    </div>
+
+    {% endif %}
+
+
+
+    <!-- =================================================
+         BASIC WORDS
+    ================================================== -->
+
+    {% if lesson == "words" %}
+
+    <div class="learning-box">
+
+        <h2>
+            📖 Everyday Words
+        </h2>
+
+        <p>
+            Learn words that are useful in everyday life.
+        </p>
+
+
+        <div class="word-grid">
+
+
+            <div class="word-card">
+
+                <div class="english">
+                    BOOK
+                </div>
+
+                <div class="meaning">
+                    పుస్తకం
+                </div>
+
+            </div>
+
+
+            <div class="word-card">
+
+                <div class="english">
+                    HOUSE
+                </div>
+
+                <div class="meaning">
+                    ఇల్లు
+                </div>
+
+            </div>
+
+
+            <div class="word-card">
+
+                <div class="english">
+                    WATER
+                </div>
+
+                <div class="meaning">
+                    నీరు
+                </div>
+
+            </div>
+
+
+            <div class="word-card">
+
+                <div class="english">
+                    FOOD
+                </div>
+
+                <div class="meaning">
+                    ఆహారం
+                </div>
+
+            </div>
+
+
+            <div class="word-card">
+
+                <div class="english">
+                    SCHOOL
+                </div>
+
+                <div class="meaning">
+                    పాఠశాల
+                </div>
+
+            </div>
+
+
+            <div class="word-card">
+
+                <div class="english">
+                    PEN
+                </div>
+
+                <div class="meaning">
+                    కలం
+                </div>
+
+            </div>
+
+
+        </div>
+
+    </div>
+
+    {% endif %}
+
+
+
+    <!-- =================================================
+         FAMILY WORDS
+    ================================================== -->
+
+    {% if lesson == "family" %}
+
+    <div class="learning-box">
+
+        <h2>
+            👨‍👩‍👧 Family Words
+        </h2>
+
+        <p>
+            Learn common family words.
+        </p>
+
+
+        <div class="word-grid">
+
+
+            <div class="word-card">
+
+                <div class="english">
+                    MOTHER
+                </div>
+
+                <div class="meaning">
+                    అమ్మ
+                </div>
+
+            </div>
+
+
+            <div class="word-card">
+
+                <div class="english">
+                    FATHER
+                </div>
+
+                <div class="meaning">
+                    నాన్న
+                </div>
+
+            </div>
+
+
+            <div class="word-card">
+
+                <div class="english">
+                    BROTHER
+                </div>
+
+                <div class="meaning">
+                    సోదరుడు
+                </div>
+
+            </div>
+
+
+            <div class="word-card">
+
+                <div class="english">
+                    SISTER
+                </div>
+
+                <div class="meaning">
+                    సోదరి
+                </div>
+
+            </div>
+
+
+        </div>
+
+    </div>
+
+    {% endif %}
+
+
+
+    <!-- =================================================
+         FOOD
+    ================================================== -->
+
+    {% if lesson == "food" %}
+
+    <div class="learning-box">
+
+        <h2>
+            🍎 Food & Drinks
+        </h2>
+
+        <p>
+            Learn common food and drink words.
+        </p>
+
+
+        <div class="word-grid">
+
+
+            <div class="word-card">
+
+                <div class="english">
+                    APPLE 🍎
+                </div>
+
+                <div class="meaning">
+                    ఆపిల్
+                </div>
+
+            </div>
+
+
+            <div class="word-card">
+
+                <div class="english">
+                    RICE 🍚
+                </div>
+
+                <div class="meaning">
+                    అన్నం
+                </div>
+
+            </div>
+
+
+            <div class="word-card">
+
+                <div class="english">
+                    MILK 🥛
+                </div>
+
+                <div class="meaning">
+                    పాలు
+                </div>
+
+            </div>
+
+
+            <div class="word-card">
+
+                <div class="english">
+                    WATER 💧
+                </div>
+
+                <div class="meaning">
+                    నీరు
+                </div>
+
+            </div>
+
+
+        </div>
+
+    </div>
+
+    {% endif %}
+
+
+
+    <!-- =================================================
+         COLORS
+    ================================================== -->
+
+    {% if lesson == "colors" %}
+
+    <div class="learning-box">
+
+        <h2>
+            🎨 Colors
+        </h2>
+
+        <p>
+            Learn basic colors.
+        </p>
+
+
+        <div class="word-grid">
+
+
+            <div class="word-card">
+
+                <div class="english">
+                    RED
+                </div>
+
+                <div class="meaning">
+                    ఎరుపు
+                </div>
+
+            </div>
+
+
+            <div class="word-card">
+
+                <div class="english">
+                    BLUE
+                </div>
+
+                <div class="meaning">
+                    నీలం
+                </div>
+
+            </div>
+
+
+            <div class="word-card">
+
+                <div class="english">
+                    GREEN
+                </div>
+
+                <div class="meaning">
+                    ఆకుపచ్చ
+                </div>
+
+            </div>
+
+
+            <div class="word-card">
+
+                <div class="english">
+                    YELLOW
+                </div>
+
+                <div class="meaning">
+                    పసుపు
+                </div>
+
+            </div>
+
+
+        </div>
+
+    </div>
+
+    {% endif %}
+
+
+
+    <!-- =================================================
+         NUMBERS
+    ================================================== -->
+
+    {% if lesson == "numbers" %}
+
+    <div class="learning-box">
+
+        <h2>
+            🔢 Numbers 1–10
+        </h2>
+
+        <p>
+            Learn numbers in English.
+        </p>
+
+
+        <div class="word-grid">
+
+            <div class="word-card">
+                <div class="english">ONE</div>
+                <div class="meaning">1</div>
+            </div>
+
+            <div class="word-card">
+                <div class="english">TWO</div>
+                <div class="meaning">2</div>
+            </div>
+
+            <div class="word-card">
+                <div class="english">THREE</div>
+                <div class="meaning">3</div>
+            </div>
+
+            <div class="word-card">
+                <div class="english">FOUR</div>
+                <div class="meaning">4</div>
+            </div>
+
+            <div class="word-card">
+                <div class="english">FIVE</div>
+                <div class="meaning">5</div>
+            </div>
+
+            <div class="word-card">
+                <div class="english">SIX</div>
+                <div class="meaning">6</div>
+            </div>
+
+            <div class="word-card">
+                <div class="english">SEVEN</div>
+                <div class="meaning">7</div>
+            </div>
+
+            <div class="word-card">
+                <div class="english">EIGHT</div>
+                <div class="meaning">8</div>
+            </div>
+
+            <div class="word-card">
+                <div class="english">NINE</div>
+                <div class="meaning">9</div>
+            </div>
+
+            <div class="word-card">
+                <div class="english">TEN</div>
+                <div class="meaning">10</div>
+            </div>
+
+        </div>
+
+    </div>
+
+    {% endif %}
+
+
+
+    <!-- =================================================
+         ANIMALS
+    ================================================== -->
+
+    {% if lesson == "animals" %}
+
+    <div class="learning-box">
+
+        <h2>
+            🐶 Animals
+        </h2>
+
+        <p>
+            Learn common animal names.
+        </p>
+
+
+        <div class="word-grid">
+
+
+            <div class="word-card">
+
+                <div class="english">
+                    DOG 🐶
+                </div>
+
+                <div class="meaning">
+                    కుక్క
+                </div>
+
+            </div>
+
+
+            <div class="word-card">
+
+                <div class="english">
+                    CAT 🐱
+                </div>
+
+                <div class="meaning">
+                    పిల్లి
+                </div>
+
+            </div>
+
+
+            <div class="word-card">
+
+                <div class="english">
+                    COW 🐄
+                </div>
+
+                <div class="meaning">
+                    ఆవు
+                </div>
+
+            </div>
+
+
+            <div class="word-card">
+
+                <div class="english">
+                    BIRD 🐦
+                </div>
+
+                <div class="meaning">
+                    పక్షి
+                </div>
+
+            </div>
+
+
+        </div>
+
+    </div>
+
+    {% endif %}
+
+
+
+    <!-- =================================================
+         QUESTION
+    ================================================== -->
+
+    <div class="question-card">
+
+        <div class="question-number">
+
+            QUESTION
+            {{ question_number|default(1) }}
+            OF
+            {{ total_questions|default(10) }}
+
+        </div>
+
+
+        <h2>
+
+            {{ question|default("What does BOOK mean?") }}
+
+        </h2>
+
+
+        <!-- =================================================
+             MULTIPLE CHOICE
+        ================================================== -->
+
+        {% if options %}
+
+        <form method="POST">
+
+
+            {% for option in options %}
+
+            <label class="option">
+
+                <input
+                    type="radio"
+                    name="answer"
+                    value="{{ option }}"
+                    required
+                >
+
+                {{ option }}
+
+            </label>
+
+            {% endfor %}
+
+
+            <button
+                type="submit"
+                class="check-btn">
+
+                Check Answer
+
+            </button>
+
+
+        </form>
+
+        {% else %}
+
+
+        <!-- =================================================
+             TEXT ANSWER
+        ================================================== -->
+
+        <form method="POST">
+
+            <input
+                type="text"
+                name="answer"
+                class="answer-input"
+                placeholder="Type your answer"
+                autocomplete="off"
+                required
+            >
+
+
+            <button
+                type="submit"
+                class="check-btn">
+
+                Check Answer
+
+            </button>
+
+        </form>
+
+        {% endif %}
+
+
+
+        <!-- =================================================
+             FEEDBACK
+        ================================================== -->
+
+        {% if message %}
+
+            <div class="feedback
+
+                {% if correct %}
+                    correct
+                {% else %}
+                    wrong
+                {% endif %}">
+
+                {{ message }}
+
+            </div>
+
+        {% endif %}
+
+
+    </div>
+
+
+
+    <!-- =================================================
+         BACK
+    ================================================== -->
+
+    <a href="/learn"
+       class="back-link">
+
+        ← Back to Learning Path
+
+    </a>
+
+
+</div>
+
+
+
+<!-- =====================================================
+     FOOTER
+===================================================== -->
+
+<footer class="footer">
+
+    <p>
+
+        © 2026 IntelliLearn
+
+        •
+
+        {{ t("footer") }}
+
+    </p>
+
+</footer>
+
+
+</body>
+
+</html>

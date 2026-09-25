@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+    <link rel="manifest" href="{{ url_for('static', filename='manifest.json') }}">
+
+    <title>IntelliLearn</title>
+
+    <!-- Connect CSS -->
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='style.css') }}">
+
+</head>
+
+
+<body>
+
+
+    <!-- =========================
+         NAVIGATION BAR
+         ========================= -->
+
+    <nav class="navbar">
+
+        <div class="logo">
+            🌱 IntelliLearn
+        </div>
+
+
+      <div class="nav-links">
+
+    <a href="/">Home</a>
+
+    <a href="/learn">Learn</a>
+      <a href="/voice">🎤 Voice</a>
+
+    <a href="/progress">Progress</a>
+
+    <a href="/profile">Profile</a>
+
+    <a href="/register">Register</a>
+
+</div>
+
+    </nav>
+
+
+
+    <!-- =========================
+         HERO SECTION
+         ========================= -->
+
+    <section class="hero">
+
+        <h1>
+            Learn English Step by Step 🌱
+        </h1>
+
+
+        <p>
+            Build your reading, writing,
+            comprehension and speaking skills
+            with personalized learning.
+        </p>
+
+
+        <a href="#" class="primary-btn">
+            Start Learning
+        </a>
+
+    </section>
+
+
+
+    <!-- =========================
+         LEARNING SECTION
+         ========================= -->
+
+    <section class="learning-section">
+
+        <h2 class="section-title">
+            Choose Your Skill
+        </h2>
+
+
+        <div class="card-container">
+
+
+            <!-- READING -->
+
+            <div class="learning-card">
+
+                <div class="icon">
+                    📚
+                </div>
+
+                <h3>
+                    Reading
+                </h3>
+
+                <p>
+                    Improve your ability
+                    to read and understand words.
+                </p>
+
+                <div class="progress-container">
+
+                    <div class="progress-bar"
+                         style="width: 70%;">
+                    </div>
+
+                </div>
+
+                <p>
+                    70% completed
+                </p>
+
+            </div>
+
+
+
+            <!-- WRITING -->
+
+            <div class="learning-card">
+
+                <div class="icon">
+                    ✍️
+                </div>
+
+                <h3>
+                    Writing
+                </h3>
+
+                <p>
+                    Practice spelling,
+                    words and simple sentences.
+                </p>
+
+                <div class="progress-container">
+
+                    <div class="progress-bar"
+                         style="width: 50%;">
+                    </div>
+
+                </div>
+
+                <p>
+                    50% completed
+                </p>
+
+            </div>
+
+
+
+            <!-- SPEAKING -->
+
+            <div class="learning-card">
+
+                <div class="icon">
+                    🎤
+                </div>
+
+                <h3>
+                    Speaking
+                </h3>
+
+                <p>
+                    Practice pronunciation
+                    and spoken English.
+                </p>
+
+                <div class="progress-container">
+
+                    <div class="progress-bar"
+                         style="width: 35%;">
+                    </div>
+
+                </div>
+
+                <p>
+                    35% completed
+                </p>
+
+            </div>
+
+
+        </div>
+
+    </section>
+
+
+
+    <!-- =========================
+         FOOTER
+         ========================= -->
+
+    <footer class="footer">
+
+        <p>
+            © 2026 IntelliLearn |
+            Intelligent Literacy Assistance Platform
+        </p>
+
+    </footer>
+<script>
+    if ("serviceWorker" in navigator) {
+        window.addEventListener("load", function () {
+            navigator.serviceWorker.register("/service-worker.js")
+            ).then(function (registration) {
+                console.log("Service Worker registered successfully:", registration.scope);
+            }).catch(function (error) {
+                console.log("Service Worker registration failed:", error);
+            });
+        });
+    }
+</script>
+
+</body>
+
+</html>

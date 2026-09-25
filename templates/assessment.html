@@ -1,0 +1,588 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>Initial Assessment - IntelliLearn</title>
+
+    <style>
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background: #f4f8f5;
+            color: #172033;
+        }
+
+        .assessment-container {
+            width: 90%;
+            max-width: 1100px;
+            margin: 40px auto 70px;
+        }
+
+        /* =========================================
+           HEADER
+           ========================================= */
+
+        .assessment-header {
+            background: white;
+            border-radius: 20px;
+            padding: 35px 38px;
+            box-shadow: 0 8px 25px rgba(0,0,0,0.06);
+            margin-bottom: 30px;
+        }
+
+        .assessment-header h1 {
+            margin: 0 0 12px;
+            font-size: 34px;
+            color: #176b3a;
+        }
+
+        .assessment-header p {
+            margin: 0;
+            font-size: 17px;
+            line-height: 1.6;
+            color: #5f6b7a;
+        }
+
+        /* =========================================
+           INFO BADGES
+           ========================================= */
+
+        .assessment-info {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 15px;
+            margin-top: 25px;
+        }
+
+        .info-badge {
+            background: #dcfce7;
+            color: #166534;
+            padding: 12px 20px;
+            border-radius: 25px;
+            font-weight: 700;
+            font-size: 15px;
+        }
+
+        /* =========================================
+           QUESTION CARD
+           ========================================= */
+
+        .question-card {
+            background: white;
+            border-radius: 18px;
+            padding: 30px;
+            margin-bottom: 24px;
+            box-shadow: 0 6px 22px rgba(0,0,0,0.05);
+            border: 1px solid #e5ebe7;
+        }
+
+        .question-number {
+            color: #16a34a;
+            font-size: 15px;
+            font-weight: 800;
+            margin-bottom: 12px;
+        }
+
+        .question-text {
+            font-size: 22px;
+            font-weight: 700;
+            margin-bottom: 25px;
+            line-height: 1.5;
+        }
+
+        /* =========================================
+           MCQ OPTIONS
+           ========================================= */
+
+        .options {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+        }
+
+        .option-label {
+            position: relative;
+            display: block;
+            cursor: pointer;
+        }
+
+        .option-label input {
+            position: absolute;
+            opacity: 0;
+            pointer-events: none;
+        }
+
+        .option-box {
+            display: flex;
+            align-items: center;
+            gap: 14px;
+            min-height: 65px;
+            padding: 15px 18px;
+            border: 2px solid #dce5df;
+            border-radius: 13px;
+            background: #ffffff;
+            transition: all 0.2s ease;
+        }
+
+        .option-box:hover {
+            border-color: #4caf61;
+            background: #f0fdf4;
+            transform: translateY(-1px);
+        }
+
+        .option-letter {
+            width: 38px;
+            height: 38px;
+            min-width: 38px;
+            border-radius: 50%;
+            background: #e8f5eb;
+            color: #16733b;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 800;
+        }
+
+        .option-text {
+            font-size: 17px;
+            font-weight: 600;
+            color: #263238;
+        }
+
+        /* SELECTED OPTION */
+
+        .option-label input:checked + .option-box {
+            border-color: #22a447;
+            background: #dcfce7;
+            box-shadow: 0 4px 12px rgba(34, 164, 71, 0.12);
+        }
+
+        .option-label input:checked + .option-box .option-letter {
+            background: #22a447;
+            color: white;
+        }
+
+        /* =========================================
+           SUBMIT SECTION
+           ========================================= */
+
+        .submit-section {
+            background: white;
+            border-radius: 18px;
+            padding: 30px;
+            text-align: center;
+            box-shadow: 0 6px 22px rgba(0,0,0,0.05);
+            margin-top: 30px;
+        }
+
+        .submit-section p {
+            color: #68747d;
+            margin-top: 0;
+            margin-bottom: 20px;
+            font-size: 15px;
+        }
+
+        .submit-button {
+            border: none;
+            background: #4caf5d;
+            color: white;
+            font-size: 18px;
+            font-weight: 800;
+            padding: 16px 50px;
+            border-radius: 12px;
+            cursor: pointer;
+            transition: 0.2s;
+        }
+
+        .submit-button:hover {
+            background: #3d984e;
+            transform: translateY(-1px);
+        }
+
+        /* =========================================
+           RESPONSIVE
+           ========================================= */
+
+        @media (max-width: 750px) {
+
+            .assessment-container {
+                width: 94%;
+                margin-top: 20px;
+            }
+
+            .assessment-header {
+                padding: 25px;
+            }
+
+            .assessment-header h1 {
+                font-size: 28px;
+            }
+
+            .question-card {
+                padding: 22px;
+            }
+
+            .question-text {
+                font-size: 19px;
+            }
+
+            .options {
+                grid-template-columns: 1fr;
+            }
+
+            .submit-button {
+                width: 100%;
+            }
+        }
+        .next-button {
+    border: none;
+    background: #4caf5d;
+    color: white;
+    font-size: 18px;
+    font-weight: 800;
+    padding: 16px 40px;
+    border-radius: 12px;
+    cursor: pointer;
+    transition: 0.2s;
+}
+
+.next-button:hover {
+    background: #3d984e;
+    transform: translateY(-1px);
+}
+
+    </style>
+
+</head>
+
+
+<body>
+
+
+<div class="assessment-container">
+
+
+    <!-- =========================================
+         ASSESSMENT HEADER
+         ========================================= -->
+
+    <div class="assessment-header">
+
+        <h1>
+            🎯 Initial Assessment
+        </h1>
+        <p style="
+    margin-top:10px;
+    font-weight:700;
+    color:#176b3a;
+">
+    Learning Language: {{ learning_language }}
+</p>
+
+        <p>
+            Complete this short assessment to help
+            IntelliLearn understand your current learning
+            level and personalize your learning journey.
+        </p>
+
+
+        <div class="assessment-info">
+
+            <div class="info-badge">
+                📝 {{ questions|length }} Questions
+            </div>
+
+            <div class="info-badge">
+                ⭐ Earn XP
+            </div>
+
+            <div class="info-badge">
+                🧠 Level Assessment
+            </div>
+
+        </div>
+
+    </div>
+
+
+
+    <!-- =========================================
+         ASSESSMENT FORM
+         ========================================= -->
+
+    <form method="POST"
+          action="{{ url_for('assessment') }}"
+          id="assessmentForm">
+
+          <div id="questionContainer">
+
+{% for question in questions %}
+
+<div class="question-card"
+     data-question="{{ loop.index0 }}"
+     style="display: none;">
+
+    <!-- QUESTION NUMBER -->
+    <div class="question-number">
+        Question {{ loop.index }} of {{ questions|length }}
+    </div>
+
+    <!-- QUESTION -->
+    <div class="question-text">
+        {{ question["question"] }}
+    </div>
+
+    <!-- OPTIONS -->
+    <div class="options">
+
+        <!-- OPTION A -->
+        <label class="option-label">
+            <input
+                type="radio"
+                name="question_{{ question['id'] }}"
+                value="A"
+                required
+                onchange="selectAnswer(this)"
+            >
+
+            <div class="option-box">
+
+                <div class="option-letter">
+                    A
+                </div>
+
+                <div class="option-text">
+                    {{ question["option_a"] }}
+                </div>
+
+            </div>
+        </label>
+
+
+        <!-- OPTION B -->
+        <label class="option-label">
+            <input
+                type="radio"
+                name="question_{{ question['id'] }}"
+                value="B"
+                onchange="selectAnswer(this)"
+            >
+
+            <div class="option-box">
+
+                <div class="option-letter">
+                    B
+                </div>
+
+                <div class="option-text">
+                    {{ question["option_b"] }}
+                </div>
+
+            </div>
+        </label>
+
+
+        <!-- OPTION C -->
+        <label class="option-label">
+            <input
+                type="radio"
+                name="question_{{ question['id'] }}"
+                value="C"
+                onchange="selectAnswer(this)"
+            >
+
+            <div class="option-box">
+
+                <div class="option-letter">
+                    C
+                </div>
+
+                <div class="option-text">
+                    {{ question["option_c"] }}
+                </div>
+
+            </div>
+        </label>
+
+
+        <!-- OPTION D -->
+        <label class="option-label">
+            <input
+                type="radio"
+                name="question_{{ question['id'] }}"
+                value="D"
+                onchange="selectAnswer(this)"
+            >
+
+            <div class="option-box">
+
+                <div class="option-letter">
+                    D
+                </div>
+
+                <div class="option-text">
+                    {{ question["option_d"] }}
+                </div>
+
+            </div>
+        </label>
+
+    </div>
+
+</div>
+
+{% endfor %}
+
+</div>
+<div style="
+    display:flex;
+    justify-content:center;
+    gap:15px;
+    margin-top:25px;
+">
+
+    <button
+        type="button"
+        class="next-button"
+        id="nextButton"
+        onclick="nextQuestion()">
+
+        Next →
+
+    </button>
+
+    <button
+        type="submit"
+        class="submit-button"
+        id="finalSubmit"
+        style="display:none;">
+
+        🎯 Submit Assessment
+
+    </button>
+
+</div>
+
+       
+
+<script>
+
+let currentQuestion = 0;
+
+const questionCards =
+    document.querySelectorAll(".question-card");
+
+const totalQuestions =
+    questionCards.length;
+
+
+function showQuestion(index) {
+
+    questionCards.forEach(function(card) {
+        card.style.display = "none";
+    });
+
+
+    const currentCard =
+        questionCards[index];
+
+    if (!currentCard) {
+        return;
+    }
+
+
+    currentCard.style.display = "block";
+
+
+    const nextButton =
+    document.getElementById("nextButton");
+
+const submitButton =
+    document.getElementById("finalSubmit");
+
+
+    if (index === totalQuestions - 1) {
+
+        nextButton.style.display = "none";
+
+        submitButton.style.display = "inline-block";
+
+    } else {
+
+        nextButton.style.display = "inline-block";
+
+        submitButton.style.display = "none";
+
+    }
+
+}
+
+
+function nextQuestion() {
+
+    const currentCard =
+        questionCards[currentQuestion];
+
+
+    const selected =
+        currentCard.querySelector(
+            'input[type="radio"]:checked'
+        );
+
+
+    if (!selected) {
+
+        alert(
+            "Please select an answer before continuing."
+        );
+
+        return;
+    }
+
+
+    currentQuestion++;
+
+
+    if (currentQuestion < totalQuestions) {
+
+        showQuestion(currentQuestion);
+
+        window.scrollTo({
+            top: 0,
+            behavior: "smooth"
+        });
+
+    }
+
+}
+
+
+document.addEventListener(
+    "DOMContentLoaded",
+    function() {
+
+        if (totalQuestions > 0) {
+
+            showQuestion(0);
+
+        }
+
+    }
+);
+
+</script>
+
+</body>
+
+</html>

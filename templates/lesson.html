@@ -1,0 +1,333 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>{{ lesson_title }} - IntelliLearn</title>
+
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='style.css') }}">
+
+    <style>
+
+        .lesson-container {
+            max-width: 900px;
+            margin: 40px auto;
+            padding: 20px;
+        }
+
+        .lesson-top {
+            background: white;
+            padding: 35px;
+            border-radius: 20px;
+            box-shadow: 0 8px 25px rgba(0,0,0,0.08);
+            margin-bottom: 25px;
+        }
+
+        .lesson-icon-large {
+            font-size: 60px;
+            text-align: center;
+        }
+
+        .lesson-top h1 {
+            text-align: center;
+            color: #2f7d32;
+        }
+
+        .lesson-description {
+            text-align: center;
+            color: #666;
+            font-size: 18px;
+        }
+
+        .progress-container {
+            background: #e5e5e5;
+            height: 12px;
+            border-radius: 10px;
+            margin: 25px 0;
+            overflow: hidden;
+        }
+
+        .progress-bar {
+            height: 100%;
+            background: #55ad60;
+            width: {{ progress_percent }}%;
+        }
+
+        .question-card {
+            background: white;
+            padding: 35px;
+            border-radius: 20px;
+            box-shadow: 0 8px 25px rgba(0,0,0,0.08);
+        }
+
+        .question-number {
+            color: #4da957;
+            font-weight: bold;
+            text-transform: uppercase;
+        }
+
+        .question {
+            font-size: 28px;
+            margin: 25px 0;
+        }
+
+        .help-box {
+            background: #f1f8f2;
+            padding: 15px;
+            border-radius: 12px;
+            margin-bottom: 25px;
+        }
+
+        .option {
+            display: block;
+            border: 2px solid #ddd;
+            padding: 18px;
+            margin: 12px 0;
+            border-radius: 12px;
+            cursor: pointer;
+            font-size: 18px;
+            transition: 0.2s;
+        }
+
+        .option:hover {
+            border-color: #55ad60;
+            background: #f5fff6;
+        }
+
+        .option input {
+            margin-right: 10px;
+        }
+
+        .check-btn {
+            width: 100%;
+            border: none;
+            padding: 16px;
+            background: #55ad60;
+            color: white;
+            font-size: 18px;
+            font-weight: bold;
+            border-radius: 12px;
+            cursor: pointer;
+            margin-top: 15px;
+        }
+
+        .check-btn:hover {
+            background: #438e4c;
+        }
+
+        .feedback {
+            margin-top: 20px;
+            padding: 18px;
+            border-radius: 12px;
+            font-size: 18px;
+        }
+
+        .correct {
+            background: #e8f7e9;
+            color: #23752b;
+        }
+
+        .wrong {
+            background: #fff0f0;
+            color: #b32626;
+        }
+
+        .back-link {
+            display: inline-block;
+            margin-top: 25px;
+            color: #2f7d32;
+            font-weight: bold;
+            text-decoration: none;
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+
+<nav class="navbar">
+
+    <div class="logo">
+        🌱 IntelliLearn
+    </div>
+
+    <div class="nav-links">
+
+        <a href="/">Home</a>
+
+        <a href="/dashboard">
+            Dashboard
+        </a>
+
+        <a href="/learn">
+            Learn
+        </a>
+
+        <a href="/voice">
+            Voice
+        </a>
+
+        <a href="/progress">
+            Progress
+        </a>
+
+        <a href="/profile">
+            Profile
+        </a>
+
+        <a href="/logout">
+            Logout
+        </a>
+
+    </div>
+
+</nav>
+
+
+<div class="lesson-container">
+
+
+    <!-- LESSON HEADER -->
+
+    <div class="lesson-top">
+
+        <div class="lesson-icon-large">
+            {{ lesson_icon }}
+        </div>
+
+        <h1>
+            {{ lesson_title }}
+        </h1>
+
+        <p class="lesson-description">
+            {{ lesson_description }}
+        </p>
+
+
+        <div class="progress-container">
+
+            <div class="progress-bar"></div>
+
+        </div>
+
+
+        <div style="display:flex; justify-content:space-between;">
+
+            <span>
+                Question {{ question_number }} of {{ total_questions }}
+            </span>
+
+            <span>
+                ⭐ {{ xp }} XP
+            </span>
+
+        </div>
+
+    </div>
+
+
+
+    <!-- QUESTION -->
+
+    <div class="question-card">
+
+        <div class="question-number">
+
+            Question {{ question_number }} of {{ total_questions }}
+
+        </div>
+
+
+        <h2 class="question">
+
+            {{ question }}
+
+        </h2>
+
+
+        {% if help_text %}
+
+        <div class="help-box">
+
+            💡 <strong>Learning Help:</strong>
+
+            {{ help_text }}
+
+        </div>
+
+        {% endif %}
+
+
+        <form method="POST">
+
+            {% for option in options %}
+
+            <label class="option">
+
+                <input
+                    type="radio"
+                    name="answer"
+                    value="{{ option }}"
+                    required
+                >
+
+                {{ option }}
+
+            </label>
+
+            {% endfor %}
+
+
+            <button
+                type="submit"
+                class="check-btn">
+
+                Check Answer
+
+            </button>
+
+        </form>
+
+
+        {% if feedback %}
+
+        <div class="feedback
+            {% if correct %}
+                correct
+            {% else %}
+                wrong
+            {% endif %}
+        ">
+
+            {{ feedback }}
+
+        </div>
+
+        {% endif %}
+
+    </div>
+
+
+    <a href="/learn"
+       class="back-link">
+
+        ← Back to Learning Path
+
+    </a>
+
+
+</div>
+
+
+</body>
+
+</html>

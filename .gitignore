@@ -1,0 +1,8 @@
+basics/
+__pycache__/
+*.pyc
+database_corrupted_*.db
+.env
+.venv/
+.vscode/
+.idea/

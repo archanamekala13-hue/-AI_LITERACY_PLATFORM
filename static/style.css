@@ -1,0 +1,4123 @@
+/* =========================================================
+   INTELLEARN
+   AI-BASED INTELLIGENT LITERACY ASSISTANCE PLATFORM
+   Main Stylesheet
+   ========================================================= */
+
+
+/* =========================================================
+   1. BASIC RESET
+   ========================================================= */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+
+/* =========================================================
+   2. BODY
+   ========================================================= */
+
+body {
+    font-family: Arial, Helvetica, sans-serif;
+
+    background: #f4f8f3;
+
+    color: #333333;
+
+    min-height: 100vh;
+
+    line-height: 1.6;
+}
+
+
+/* =========================================================
+   3. NAVIGATION BAR
+   ========================================================= */
+
+.navbar {
+    width: 100%;
+
+    background: #ffffff;
+
+    padding: 18px 8%;
+
+    display: flex;
+
+    justify-content: space-between;
+
+    align-items: center;
+
+    border-bottom: 1px solid #e4e9e3;
+
+    position: sticky;
+
+    top: 0;
+
+    z-index: 1000;
+
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.04);
+}
+
+
+/* =========================================================
+   4. LOGO
+   ========================================================= */
+
+.logo {
+    font-size: 25px;
+
+    font-weight: 800;
+
+    color: #58a65c;
+
+    letter-spacing: -0.5px;
+
+    cursor: pointer;
+}
+
+
+/* =========================================================
+   5. NAVIGATION LINKS
+   ========================================================= */
+
+.nav-links {
+    display: flex;
+
+    align-items: center;
+
+    gap: 28px;
+}
+
+
+.nav-links a {
+    text-decoration: none;
+
+    color: #444444;
+
+    font-size: 15px;
+
+    font-weight: 600;
+
+    padding: 8px 4px;
+
+    transition: all 0.25s ease;
+}
+
+
+.nav-links a:hover {
+    color: #58a65c;
+
+    transform: translateY(-1px);
+}
+
+
+/* =========================================================
+   6. HERO SECTION
+   ========================================================= */
+
+.hero {
+    max-width: 1000px;
+
+    margin: 35px auto 20px;
+
+    padding: 35px 25px;
+
+    text-align: center;
+}
+
+
+.hero h1 {
+    font-size: 46px;
+
+    font-weight: 800;
+
+    color: #2f3430;
+
+    line-height: 1.2;
+
+    margin-bottom: 15px;
+}
+
+
+.hero p {
+    max-width: 700px;
+
+    margin: 0 auto 25px;
+
+    font-size: 18px;
+
+    color: #68716a;
+}
+
+
+/* =========================================================
+   7. MAIN BUTTON
+   ========================================================= */
+
+.primary-btn {
+    display: inline-block;
+
+    padding: 14px 30px;
+
+    background: #58a65c;
+
+    color: #ffffff;
+
+    text-decoration: none;
+
+    border-radius: 12px;
+
+    font-weight: 700;
+
+    font-size: 16px;
+
+    border: none;
+
+    cursor: pointer;
+
+    transition: all 0.25s ease;
+
+    box-shadow: 0 5px 12px rgba(88, 166, 92, 0.25);
+}
+
+
+.primary-btn:hover {
+    background: #478d4b;
+
+    transform: translateY(-2px);
+
+    box-shadow: 0 8px 18px rgba(88, 166, 92, 0.30);
+}
+
+
+.primary-btn:active {
+    transform: translateY(0);
+}
+
+
+/* =========================================================
+   8. LEARNING SECTION
+   ========================================================= */
+
+.learning-section {
+    max-width: 1100px;
+
+    margin: 0 auto 60px;
+
+    padding: 20px;
+}
+
+
+.section-title {
+    text-align: center;
+
+    margin-bottom: 30px;
+
+    font-size: 30px;
+
+    font-weight: 750;
+
+    color: #333333;
+}
+
+
+/* =========================================================
+   9. CARD CONTAINER
+   ========================================================= */
+
+.card-container {
+    display: grid;
+
+    grid-template-columns: repeat(3, 1fr);
+
+    gap: 25px;
+}
+
+
+/* =========================================================
+   10. LEARNING CARD
+   ========================================================= */
+
+.learning-card {
+    background: #ffffff;
+
+    padding: 30px;
+
+    border-radius: 20px;
+
+    border: 1px solid #e4e9e3;
+
+    text-align: center;
+
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.05);
+
+    transition: all 0.25s ease;
+}
+
+
+.learning-card:hover {
+    transform: translateY(-5px);
+
+    box-shadow: 0 14px 30px rgba(0, 0, 0, 0.09);
+
+    border-color: #cfe4d0;
+}
+
+
+/* =========================================================
+   11. CARD ICON
+   ========================================================= */
+
+.learning-card .icon {
+    font-size: 48px;
+
+    margin-bottom: 15px;
+}
+
+
+/* =========================================================
+   12. CARD HEADING
+   ========================================================= */
+
+.learning-card h3 {
+    margin-bottom: 10px;
+
+    font-size: 22px;
+
+    color: #333333;
+}
+
+
+/* =========================================================
+   13. CARD PARAGRAPH
+   ========================================================= */
+
+.learning-card p {
+    color: #6b736c;
+
+    margin-bottom: 15px;
+
+    font-size: 15px;
+}
+
+
+/* =========================================================
+   14. PROGRESS BAR CONTAINER
+   ========================================================= */
+
+.progress-container {
+    width: 100%;
+
+    height: 12px;
+
+    background: #e8eee8;
+
+    border-radius: 20px;
+
+    overflow: hidden;
+
+    margin: 18px 0 10px;
+}
+
+
+/* =========================================================
+   15. PROGRESS BAR
+   ========================================================= */
+
+.progress-bar {
+    height: 100%;
+
+    background: #58a65c;
+
+    border-radius: 20px;
+
+    transition: width 0.5s ease;
+}
+
+
+/* =========================================================
+   16. FOOTER
+   ========================================================= */
+
+.footer {
+    text-align: center;
+
+    padding: 28px 20px;
+
+    background: #ffffff;
+
+    color: #7a817b;
+
+    margin-top: 50px;
+
+    border-top: 1px solid #e4e9e3;
+
+    font-size: 14px;
+}
+
+
+/* =========================================================
+   17. REGISTER CARD
+   ========================================================= */
+
+.register-card {
+    max-width: 520px;
+
+    margin: 0 auto;
+
+    padding: 38px;
+
+    text-align: left;
+
+    background: #ffffff;
+
+    border-radius: 22px;
+
+    border: 1px solid #e1e8e0;
+
+    box-shadow: 0 12px 35px rgba(0, 0, 0, 0.08);
+}
+
+
+/* =========================================================
+   18. REGISTER FORM
+   ========================================================= */
+
+.register-card form {
+    display: flex;
+
+    flex-direction: column;
+
+    width: 100%;
+}
+
+
+/* =========================================================
+   19. FORM LABELS
+   ========================================================= */
+
+.register-card label {
+    display: block;
+
+    font-size: 15px;
+
+    font-weight: 700;
+
+    margin-top: 17px;
+
+    margin-bottom: 7px;
+
+    color: #343934;
+}
+
+
+/* =========================================================
+   20. INPUTS AND SELECT
+   ========================================================= */
+
+.register-card input,
+.register-card select {
+    width: 100%;
+
+    padding: 14px 15px;
+
+    font-size: 15px;
+
+    font-family: Arial, Helvetica, sans-serif;
+
+    color: #333333;
+
+    background: #fbfcfb;
+
+    border: 2px solid #e2e8e2;
+
+    border-radius: 11px;
+
+    outline: none;
+
+    transition: all 0.25s ease;
+}
+
+
+/* =========================================================
+   21. INPUT PLACEHOLDER
+   ========================================================= */
+
+.register-card input::placeholder {
+    color: #9ba29c;
+}
+
+
+/* =========================================================
+   22. INPUT FOCUS
+   ========================================================= */
+
+.register-card input:focus,
+.register-card select:focus {
+    border-color: #58a65c;
+
+    background: #ffffff;
+
+    box-shadow: 0 0 0 3px rgba(88, 166, 92, 0.12);
+}
+
+
+/* =========================================================
+   23. REGISTER BUTTON
+   ========================================================= */
+
+.register-card .primary-btn {
+    width: 100%;
+
+    margin-top: 25px;
+
+    padding: 15px;
+
+    font-size: 16px;
+
+    text-align: center;
+}
+
+
+/* =========================================================
+   24. LOGIN TEXT
+   ========================================================= */
+
+.login-text {
+    text-align: center;
+
+    margin-top: 22px;
+
+    margin-bottom: 0;
+
+    color: #6b736c;
+
+    font-size: 15px;
+}
+
+
+.login-text a {
+    color: #58a65c;
+
+    font-weight: 700;
+
+    text-decoration: none;
+}
+
+
+.login-text a:hover {
+    text-decoration: underline;
+}
+
+
+/* =========================================================
+   25. REGISTER PAGE SPECIAL DESIGN
+   ========================================================= */
+
+.register-page .hero {
+    margin-top: 20px;
+
+    margin-bottom: 5px;
+
+    padding-top: 25px;
+
+    padding-bottom: 15px;
+}
+
+
+.register-page .hero h1 {
+    font-size: 42px;
+}
+
+
+.register-page .hero p {
+    margin-bottom: 10px;
+}
+
+
+/* =========================================================
+   26. SIMPLE ANIMATION
+   ========================================================= */
+
+.learning-card,
+.register-card {
+    animation: fadeUp 0.5s ease;
+}
+
+
+@keyframes fadeUp {
+
+    from {
+        opacity: 0;
+
+        transform: translateY(10px);
+    }
+
+    to {
+        opacity: 1;
+
+        transform: translateY(0);
+    }
+}
+
+
+/* =========================================================
+   27. MOBILE RESPONSIVE DESIGN
+   ========================================================= */
+
+@media (max-width: 768px) {
+
+    /* Navigation */
+
+    .navbar {
+        padding: 15px 5%;
+
+        flex-direction: column;
+
+        gap: 12px;
+    }
+
+
+    .logo {
+        font-size: 22px;
+    }
+
+
+    .nav-links {
+        gap: 12px;
+
+        flex-wrap: wrap;
+
+        justify-content: center;
+    }
+
+
+    .nav-links a {
+        font-size: 14px;
+    }
+
+
+    /* Hero */
+
+    .hero {
+        margin-top: 20px;
+
+        padding: 30px 20px;
+    }
+
+
+    .hero h1 {
+        font-size: 34px;
+    }
+
+
+    .hero p {
+        font-size: 16px;
+    }
+
+
+    /* Cards */
+
+    .card-container {
+        grid-template-columns: 1fr;
+
+        gap: 20px;
+    }
+
+
+    /* Register */
+
+    .register-card {
+        width: 100%;
+
+        padding: 25px;
+
+        border-radius: 18px;
+    }
+
+
+    .register-page .hero h1 {
+        font-size: 32px;
+    }
+
+}
+
+
+/* =========================================================
+   28. SMALL MOBILE DEVICES
+   ========================================================= */
+
+@media (max-width: 480px) {
+
+    .navbar {
+        padding: 14px 4%;
+    }
+
+
+    .nav-links {
+        gap: 8px;
+    }
+
+
+    .nav-links a {
+        font-size: 13px;
+    }
+
+
+    .hero h1 {
+        font-size: 29px;
+    }
+
+
+    .hero p {
+        font-size: 15px;
+    }
+
+
+    .register-card {
+        padding: 20px;
+    }
+
+
+    .learning-card {
+        padding: 25px 20px;
+    }
+
+}
+
+/* =========================================================
+   DASHBOARD
+   ========================================================= */
+
+.dashboard-container {
+    max-width: 1100px;
+
+    margin: 0 auto;
+
+    padding: 40px 25px 70px;
+}
+
+
+/* =========================================
+   WELCOME SECTION
+   ========================================= */
+
+.dashboard-welcome {
+    background: #ffffff;
+
+    border: 1px solid #e1e8e0;
+
+    border-radius: 22px;
+
+    padding: 32px;
+
+    display: flex;
+
+    justify-content: space-between;
+
+    align-items: center;
+
+    margin-bottom: 25px;
+
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.05);
+}
+
+
+.welcome-small {
+    color: #58a65c;
+
+    font-size: 13px;
+
+    font-weight: 800;
+
+    letter-spacing: 1px;
+
+    margin-bottom: 5px;
+}
+
+
+.dashboard-welcome h1 {
+    font-size: 32px;
+
+    color: #303530;
+
+    margin-bottom: 5px;
+}
+
+
+.dashboard-welcome p {
+    color: #707870;
+}
+
+
+.language-badge {
+    background: #edf7ed;
+
+    color: #4c944f;
+
+    padding: 10px 18px;
+
+    border-radius: 30px;
+
+    font-weight: 700;
+}
+
+
+/* =========================================
+   STATISTICS
+   ========================================= */
+
+.stats-container {
+    display: grid;
+
+    grid-template-columns: repeat(3, 1fr);
+
+    gap: 20px;
+
+    margin-bottom: 25px;
+}
+
+
+.stat-card {
+    background: #ffffff;
+
+    border: 1px solid #e1e8e0;
+
+    border-radius: 18px;
+
+    padding: 23px;
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 17px;
+
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.04);
+
+    transition: 0.25s;
+}
+
+
+.stat-card:hover {
+    transform: translateY(-3px);
+
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.08);
+}
+
+
+.stat-icon {
+    width: 52px;
+
+    height: 52px;
+
+    border-radius: 15px;
+
+    background: #f0f7ef;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    font-size: 25px;
+}
+
+
+.stat-card h3 {
+    font-size: 23px;
+
+    color: #333333;
+}
+
+
+.stat-card p {
+    font-size: 13px;
+
+    color: #777777;
+}
+
+
+/* =========================================
+   DASHBOARD CARD
+   ========================================= */
+
+.dashboard-card {
+    background: #ffffff;
+
+    border: 1px solid #e1e8e0;
+
+    border-radius: 20px;
+
+    padding: 28px;
+
+    margin-bottom: 25px;
+
+    box-shadow: 0 7px 23px rgba(0, 0, 0, 0.04);
+}
+
+
+.card-header {
+    display: flex;
+
+    justify-content: space-between;
+
+    align-items: center;
+
+    margin-bottom: 18px;
+}
+
+
+.card-header h2 {
+    font-size: 22px;
+
+    color: #333333;
+
+    margin-bottom: 4px;
+}
+
+
+.card-header p {
+    color: #777777;
+
+    font-size: 14px;
+}
+
+
+.card-header strong {
+    font-size: 22px;
+
+    color: #58a65c;
+}
+
+
+/* =========================================
+   LESSON ITEMS
+   ========================================= */
+
+.lesson-item {
+    display: flex;
+
+    align-items: center;
+
+    gap: 18px;
+
+    padding: 18px;
+
+    border-radius: 15px;
+
+    margin-top: 12px;
+
+    border: 1px solid #e7ebe7;
+
+    transition: 0.25s;
+}
+
+
+.lesson-item:hover {
+    transform: translateX(4px);
+}
+
+
+.lesson-icon {
+    width: 48px;
+
+    height: 48px;
+
+    border-radius: 13px;
+
+    background: #f0f7ef;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    font-size: 23px;
+}
+
+
+.lesson-info {
+    flex: 1;
+}
+
+
+.lesson-info h3 {
+    font-size: 16px;
+
+    color: #333333;
+
+    margin-bottom: 3px;
+}
+
+
+.lesson-info p {
+    font-size: 13px;
+
+    color: #777777;
+}
+
+
+/* COMPLETED */
+
+.lesson-item.completed {
+    background: #f5faf5;
+}
+
+
+/* CURRENT */
+
+.lesson-item.current {
+    background: #ffffff;
+
+    border: 2px solid #58a65c;
+}
+
+
+/* LOCKED */
+
+.lesson-item.locked {
+    background: #f8f8f8;
+
+    opacity: 0.65;
+}
+
+
+/* =========================================
+   LESSON BUTTON
+   ========================================= */
+
+.lesson-button {
+    text-decoration: none;
+
+    background: #58a65c;
+
+    color: white;
+
+    padding: 9px 17px;
+
+    border-radius: 9px;
+
+    font-size: 12px;
+
+    font-weight: 800;
+
+    transition: 0.2s;
+}
+
+
+.lesson-button:hover {
+    background: #478d4b;
+}
+
+
+/* =========================================
+   LESSON STATUS
+   ========================================= */
+
+.lesson-status {
+    font-size: 22px;
+}
+
+
+/* =========================================
+   CONTINUE BUTTON
+   ========================================= */
+
+.continue-container {
+    text-align: center;
+
+    margin: 30px 0;
+}
+
+
+/* =========================================
+   DASHBOARD MOBILE
+   ========================================= */
+
+@media (max-width: 768px) {
+
+    .dashboard-container {
+        padding: 25px 15px 50px;
+    }
+
+
+    .dashboard-welcome {
+        flex-direction: column;
+
+        align-items: flex-start;
+
+        gap: 18px;
+
+        padding: 25px;
+    }
+
+
+    .dashboard-welcome h1 {
+        font-size: 27px;
+    }
+
+
+    .stats-container {
+        grid-template-columns: 1fr;
+    }
+
+
+    .dashboard-card {
+        padding: 20px;
+    }
+
+
+    .lesson-item {
+        gap: 12px;
+
+        padding: 14px;
+    }
+
+
+    .lesson-info h3 {
+        font-size: 14px;
+    }
+
+
+    .lesson-info p {
+        font-size: 12px;
+    }
+
+}
+/* =========================================================
+   PROFILE PAGE
+   ========================================================= */
+
+.profile-container {
+    max-width: 950px;
+
+    margin: 0 auto;
+
+    padding: 45px 25px 70px;
+}
+
+
+/* =========================================
+   PROFILE HEADER
+   ========================================= */
+
+.profile-header {
+    background: #ffffff;
+
+    border: 1px solid #e1e8e0;
+
+    border-radius: 22px;
+
+    padding: 32px;
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 22px;
+
+    margin-bottom: 25px;
+
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.05);
+}
+
+
+.profile-avatar {
+    width: 80px;
+
+    height: 80px;
+
+    border-radius: 50%;
+
+    background: #edf7ed;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    font-size: 40px;
+
+    border: 4px solid #dcefdc;
+}
+
+
+.profile-label {
+    color: #58a65c !important;
+
+    font-size: 12px !important;
+
+    font-weight: 800;
+
+    letter-spacing: 1px;
+}
+
+
+.profile-header h1 {
+    font-size: 30px;
+
+    color: #303530;
+
+    margin: 2px 0;
+}
+
+
+.profile-header p {
+    color: #737a74;
+
+    font-size: 14px;
+}
+
+
+/* =========================================
+   PROFILE CARD
+   ========================================= */
+
+.profile-card {
+    background: #ffffff;
+
+    border: 1px solid #e1e8e0;
+
+    border-radius: 20px;
+
+    padding: 28px;
+
+    margin-bottom: 22px;
+
+    box-shadow: 0 7px 23px rgba(0, 0, 0, 0.04);
+}
+
+
+.profile-card h2 {
+    font-size: 20px;
+
+    color: #333333;
+
+    margin-bottom: 20px;
+}
+
+
+/* =========================================
+   INFORMATION ROWS
+   ========================================= */
+
+.profile-info {
+    display: flex;
+
+    flex-direction: column;
+}
+
+
+.info-row {
+    display: flex;
+
+    justify-content: space-between;
+
+    align-items: center;
+
+    padding: 16px 0;
+
+    border-bottom: 1px solid #edf0ed;
+}
+
+
+.info-row:last-child {
+    border-bottom: none;
+}
+
+
+.info-row span {
+    color: #707870;
+
+    font-size: 14px;
+}
+
+
+.info-row strong {
+    color: #333333;
+
+    font-size: 15px;
+}
+
+
+/* =========================================
+   PROFILE STATISTICS
+   ========================================= */
+
+.profile-stats {
+    display: grid;
+
+    grid-template-columns: repeat(3, 1fr);
+
+    gap: 18px;
+}
+
+
+.profile-stat {
+    text-align: center;
+
+    background: #f7faf7;
+
+    border-radius: 16px;
+
+    padding: 22px;
+
+    border: 1px solid #e5ece5;
+}
+
+
+.profile-stat-icon {
+    font-size: 30px;
+
+    margin-bottom: 8px;
+}
+
+
+.profile-stat h3 {
+    font-size: 23px;
+
+    color: #333333;
+
+    margin-bottom: 3px;
+}
+
+
+.profile-stat p {
+    color: #777777;
+
+    font-size: 13px;
+}
+
+
+/* =========================================
+   LEARNING GOAL
+   ========================================= */
+
+.goal-text {
+    color: #6e756f;
+
+    font-size: 15px;
+
+    margin-bottom: 18px;
+}
+
+
+.goal-progress {
+    color: #58a65c;
+
+    font-size: 13px;
+
+    font-weight: 700;
+}
+
+
+/* =========================================
+   PROFILE BUTTON
+   ========================================= */
+
+.profile-button-container {
+    text-align: center;
+
+    margin-top: 30px;
+}
+
+
+/* =========================================
+   PROFILE MOBILE
+   ========================================= */
+
+@media (max-width: 768px) {
+
+    .profile-container {
+        padding: 25px 15px 50px;
+    }
+
+
+    .profile-header {
+        padding: 25px;
+
+        align-items: flex-start;
+    }
+
+
+    .profile-avatar {
+        width: 65px;
+
+        height: 65px;
+
+        font-size: 30px;
+    }
+
+
+    .profile-header h1 {
+        font-size: 25px;
+    }
+
+
+    .profile-stats {
+        grid-template-columns: 1fr;
+    }
+
+
+    .info-row {
+        flex-direction: column;
+
+        align-items: flex-start;
+
+        gap: 5px;
+    }
+
+}
+
+/* =========================================================
+   EXTRA REGISTRATION IMPROVEMENTS
+   ADD THIS AT THE BOTTOM OF YOUR EXISTING CSS
+   ========================================================= */
+
+
+/* Keep registration page centered nicely */
+
+.register-page {
+    background: #f4f8f3;
+}
+
+
+/* Reduce too much gap above form */
+
+.register-page .learning-section {
+    max-width: 650px;
+    margin: 0 auto 50px;
+    padding: 10px 20px;
+}
+
+
+/* Make register card slightly wider */
+
+.register-page .register-card {
+    max-width: 580px;
+    padding: 35px 40px;
+}
+
+
+/* Make form clean and vertical */
+
+.register-form {
+    display: flex !important;
+    flex-direction: column !important;
+    gap: 0;
+    width: 100%;
+}
+
+
+/* Each field container */
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    margin-bottom: 18px;
+}
+
+
+/* Labels */
+
+.form-group label {
+    font-size: 15px;
+    font-weight: 700;
+    color: #343934;
+    margin-bottom: 7px;
+}
+
+
+/* Small explanation under language labels */
+
+.field-help {
+    display: block;
+    font-size: 12px;
+    color: #7d857e;
+    margin-top: -2px;
+    margin-bottom: 8px;
+}
+
+
+/* Inputs and dropdowns */
+
+.form-group input,
+.form-group select {
+    width: 100%;
+    min-height: 48px;
+    padding: 12px 14px;
+    font-size: 15px;
+    background: #fbfcfb;
+    border: 2px solid #e2e8e2;
+    border-radius: 11px;
+    outline: none;
+    transition: all 0.25s ease;
+}
+
+
+/* Focus effect */
+
+.form-group input:focus,
+.form-group select:focus {
+    border-color: #58a65c;
+    background: white;
+    box-shadow: 0 0 0 3px rgba(88, 166, 92, 0.12);
+}
+
+
+/* Better dropdown appearance */
+
+.form-group select {
+    cursor: pointer;
+}
+
+
+/* Main register button */
+
+.register-btn {
+    width: 100%;
+    margin-top: 8px;
+    padding: 15px;
+    border-radius: 12px;
+    font-size: 16px;
+}
+
+
+/* Optional language information box */
+
+.language-preview {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+
+    background: #f0f8ef;
+    border: 1px solid #d8ead7;
+    border-radius: 12px;
+
+    padding: 14px;
+    margin: 5px 0 18px;
+}
+
+
+.language-preview .preview-icon {
+    font-size: 24px;
+}
+
+
+.language-preview strong {
+    display: block;
+    color: #4c944f;
+    margin-bottom: 3px;
+}
+
+
+.language-preview p {
+    font-size: 12px;
+    color: #707870;
+    margin: 0;
+}
+
+
+/* Improve login text */
+
+.login-text {
+    margin-top: 20px;
+    text-align: center;
+}
+
+
+/* Mobile */
+
+@media (max-width: 600px) {
+
+    .register-page .register-card {
+        padding: 25px 20px;
+    }
+
+    .form-group input,
+    .form-group select {
+        font-size: 14px;
+    }
+
+}
+
+/* ==========================================
+   INTELLEARN VOICE LEARNING
+   ========================================== */
+
+.voice-page {
+    min-height: 85vh;
+    padding: 50px 20px;
+}
+
+.voice-container {
+    max-width: 900px;
+    margin: auto;
+}
+
+.voice-header {
+    text-align: center;
+    margin-bottom: 35px;
+}
+
+.voice-icon {
+    font-size: 55px;
+    margin-bottom: 10px;
+}
+
+.voice-header h1 {
+    font-size: 38px;
+    margin-bottom: 10px;
+}
+
+.voice-header p {
+    color: #666;
+    font-size: 17px;
+}
+
+.voice-card {
+    background: white;
+    padding: 35px;
+    margin-bottom: 25px;
+    border-radius: 20px;
+    border: 1px solid #e5e5e5;
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.06);
+    text-align: center;
+}
+
+.voice-card h2 {
+    margin-bottom: 10px;
+}
+
+.voice-card p {
+    color: #666;
+    margin-bottom: 20px;
+}
+
+.lesson-sentence {
+    background: #f1f8f1;
+    padding: 25px;
+    border-radius: 15px;
+    font-size: 24px;
+    font-weight: bold;
+    margin: 25px 0;
+}
+
+.voice-button,
+.mic-button {
+    border: none;
+    padding: 15px 30px;
+    border-radius: 12px;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.voice-button {
+    background: #58a65c;
+    color: white;
+}
+
+.mic-button {
+    background: #ffb703;
+    color: #333;
+}
+
+.voice-button:hover,
+.mic-button:hover {
+    transform: translateY(-2px);
+}
+
+.voice-status {
+    margin-top: 20px;
+    font-weight: bold;
+}
+
+#speechText {
+    width: 100%;
+    min-height: 120px;
+    margin-top: 15px;
+    padding: 15px;
+    border-radius: 12px;
+    border: 2px solid #e0e0e0;
+    resize: none;
+    font-size: 17px;
+}
+/* ==========================================
+   VOICE LEARNING PAGE
+   ========================================== */
+
+.voice-page {
+    padding: 50px 20px;
+}
+
+.voice-container {
+    max-width: 900px;
+    margin: auto;
+}
+
+.voice-header {
+    text-align: center;
+    margin-bottom: 35px;
+}
+
+.voice-header h1 {
+    font-size: 38px;
+    margin-bottom: 10px;
+}
+
+.voice-header p {
+    font-size: 18px;
+}
+
+.voice-card {
+    background: white;
+    padding: 30px;
+    margin-bottom: 25px;
+    border-radius: 20px;
+    text-align: center;
+    box-shadow: 0 8px 25px rgba(0,0,0,0.08);
+}
+
+.voice-card h2 {
+    margin-bottom: 10px;
+}
+
+.lesson-sentence {
+    font-size: 25px;
+    font-weight: bold;
+    margin: 25px 0;
+}
+
+.voice-button {
+    border: none;
+    padding: 14px 28px;
+    border-radius: 12px;
+    font-size: 17px;
+    cursor: pointer;
+}
+
+.mic-button {
+    margin-top: 15px;
+}
+
+.voice-status {
+    margin-top: 20px;
+    font-weight: bold;
+}
+
+#speechText {
+    width: 90%;
+    margin-top: 20px;
+    padding: 15px;
+    border-radius: 12px;
+    border: 1px solid #ddd;
+    font-size: 16px;
+    resize: none;
+}
+
+.learning-card h3 {
+    color: #222222;
+    font-size: 26px;
+    margin: 20px 0 10px;
+}
+
+.learning-card p {
+    color: #555555;
+    font-size: 17px;
+    line-height: 1.6;
+}
+
+.learning-card .primary-btn {
+    color: white;
+    background: #58a95c;
+    display: inline-block;
+    text-decoration: none;
+}
+
+
+/* =========================================================
+   INTELLILEARN - ATTRACTIVE PROGRESS PAGE
+   ========================================================= */
+
+.progress-page {
+    background: #f4f8f5;
+}
+
+
+/* =========================================================
+   MAIN WRAPPER
+   ========================================================= */
+
+.progress-wrapper {
+    max-width: 1250px;
+    margin: 0 auto;
+    padding: 45px 35px 70px;
+}
+
+
+/* =========================================================
+   NAVIGATION ACTIVE
+   ========================================================= */
+
+.nav-links a.active {
+    color: #159447;
+    font-weight: 700;
+}
+
+
+/* =========================================================
+   HEADER
+   ========================================================= */
+
+.progress-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 30px;
+}
+
+
+.progress-title {
+    display: flex;
+    align-items: center;
+    gap: 18px;
+}
+
+
+.title-icon {
+    width: 65px;
+    height: 65px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 18px;
+
+    background: linear-gradient(
+        135deg,
+        #dff8e6,
+        #bceecb
+    );
+
+    font-size: 32px;
+}
+
+
+.progress-title h1 {
+    margin: 0;
+
+    font-size: 36px;
+
+    color: #172033;
+}
+
+
+.progress-title p {
+    margin-top: 6px;
+
+    color: #667085;
+
+    font-size: 16px;
+}
+
+
+.welcome-badge {
+    background: white;
+
+    padding: 12px 20px;
+
+    border-radius: 30px;
+
+    box-shadow:
+        0 5px 20px rgba(0,0,0,0.06);
+
+    color: #344054;
+
+    font-weight: 600;
+}
+
+
+/* =========================================================
+   STAT CARDS
+   ========================================================= */
+
+.stats-grid {
+    display: grid;
+
+    grid-template-columns:
+        repeat(3, 1fr);
+
+    gap: 20px;
+
+    margin-bottom: 28px;
+}
+
+
+.stat-card {
+    background: white;
+
+    border-radius: 20px;
+
+    padding: 22px;
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 18px;
+
+    box-shadow:
+        0 8px 30px rgba(25, 55, 35, 0.07);
+
+    border: 1px solid #edf1ee;
+
+    transition:
+        transform 0.2s ease,
+        box-shadow 0.2s ease;
+}
+
+
+.stat-card:hover {
+    transform: translateY(-4px);
+
+    box-shadow:
+        0 14px 35px rgba(25, 55, 35, 0.12);
+}
+
+
+.stat-icon {
+    width: 58px;
+    height: 58px;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    border-radius: 17px;
+
+    font-size: 28px;
+}
+
+
+.streak-card .stat-icon {
+    background: #fff0d8;
+}
+
+
+.xp-card .stat-icon {
+    background: #fff8d7;
+}
+
+
+.level-card .stat-icon {
+    background: #eee6ff;
+}
+
+
+.stat-card span {
+    display: block;
+
+    color: #667085;
+
+    font-size: 14px;
+
+    margin-bottom: 4px;
+}
+
+
+.stat-card strong {
+    display: block;
+
+    color: #172033;
+
+    font-size: 25px;
+}
+
+
+.stat-card small {
+    color: #98a2b3;
+
+    font-size: 12px;
+}
+
+
+/* =========================================================
+   OVERALL CARD
+   ========================================================= */
+
+.overall-card {
+    background: white;
+
+    border-radius: 24px;
+
+    padding: 30px;
+
+    margin-bottom: 35px;
+
+    box-shadow:
+        0 8px 30px rgba(25, 55, 35, 0.07);
+
+    border: 1px solid #edf1ee;
+}
+
+
+.section-heading {
+    display: flex;
+
+    justify-content: space-between;
+
+    align-items: center;
+
+    margin-bottom: 25px;
+}
+
+
+.section-heading h2 {
+    margin: 0;
+
+    font-size: 22px;
+
+    color: #172033;
+}
+
+
+.section-heading span {
+    font-size: 22px;
+
+    font-weight: 800;
+
+    color: #159447;
+}
+
+
+.overall-content {
+    display: flex;
+
+    align-items: center;
+
+    gap: 55px;
+}
+
+
+/* =========================================================
+   CIRCULAR PROGRESS
+   ========================================================= */
+
+.progress-circle {
+    width: 190px;
+
+    height: 190px;
+
+    border-radius: 50%;
+
+    background:
+        conic-gradient(
+            #24ad63 var(--progress),
+            #e8eee9 0
+        );
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    flex-shrink: 0;
+}
+
+
+.circle-inner {
+    width: 145px;
+
+    height: 145px;
+
+    border-radius: 50%;
+
+    background: white;
+
+    display: flex;
+
+    flex-direction: column;
+
+    align-items: center;
+
+    justify-content: center;
+}
+
+
+.circle-inner strong {
+    font-size: 35px;
+
+    color: #172033;
+}
+
+
+.circle-inner span {
+    color: #667085;
+
+    margin-top: 3px;
+}
+
+
+/* =========================================================
+   OVERALL MESSAGE
+   ========================================================= */
+
+.overall-message h3 {
+    font-size: 24px;
+
+    color: #172033;
+
+    margin-bottom: 10px;
+}
+
+
+.overall-message p {
+    max-width: 500px;
+
+    color: #667085;
+
+    line-height: 1.7;
+
+    font-size: 16px;
+}
+
+
+/* =========================================================
+   SKILLS
+   ========================================================= */
+
+.skills-title {
+    font-size: 24px;
+
+    color: #172033;
+
+    margin-bottom: 18px;
+}
+
+
+.skills-grid {
+    display: grid;
+
+    grid-template-columns:
+        repeat(3, 1fr);
+
+    gap: 20px;
+
+    margin-bottom: 30px;
+}
+
+
+.skill-card {
+    background: white;
+
+    border-radius: 22px;
+
+    padding: 25px;
+
+    box-shadow:
+        0 8px 30px rgba(25, 55, 35, 0.07);
+
+    border: 1px solid #edf1ee;
+
+    transition:
+        transform 0.2s ease,
+        box-shadow 0.2s ease;
+}
+
+
+.skill-card:hover {
+    transform: translateY(-5px);
+
+    box-shadow:
+        0 14px 35px rgba(25, 55, 35, 0.12);
+}
+
+
+.skill-top {
+    display: flex;
+
+    align-items: center;
+
+    gap: 13px;
+
+    margin-bottom: 22px;
+}
+
+
+.skill-icon {
+    width: 52px;
+
+    height: 52px;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    border-radius: 16px;
+
+    font-size: 26px;
+
+    flex-shrink: 0;
+}
+
+
+.reading-icon {
+    background: #dff7e7;
+}
+
+
+.writing-icon {
+    background: #fff1cf;
+}
+
+
+.speaking-icon {
+    background: #eee4ff;
+}
+
+
+.skill-info {
+    flex: 1;
+}
+
+
+.skill-info h3 {
+    margin: 0;
+
+    font-size: 19px;
+
+    color: #172033;
+}
+
+
+.skill-info p {
+    margin: 4px 0 0;
+
+    color: #667085;
+
+    font-size: 13px;
+}
+
+
+.skill-percent {
+    font-size: 24px;
+
+    color: #172033;
+}
+
+
+.skill-progress {
+    width: 100%;
+
+    height: 11px;
+
+    background: #e9eeeb;
+
+    border-radius: 20px;
+
+    overflow: hidden;
+}
+
+
+.skill-progress-fill {
+    height: 100%;
+
+    border-radius: 20px;
+
+    transition: width 0.8s ease;
+}
+
+
+.reading-fill {
+    background: linear-gradient(
+        90deg,
+        #20a95c,
+        #45c878
+    );
+}
+
+
+.writing-fill {
+    background: linear-gradient(
+        90deg,
+        #f3a623,
+        #ffc44d
+    );
+}
+
+
+.speaking-fill {
+    background: linear-gradient(
+        90deg,
+        #8051db,
+        #a57af0
+    );
+}
+
+
+.skill-status {
+    display: flex;
+
+    justify-content: space-between;
+
+    margin-top: 13px;
+
+    color: #667085;
+
+    font-size: 13px;
+}
+
+
+.completed-status {
+    color: #159447;
+
+    font-weight: 700;
+}
+
+
+.skill-message {
+    margin-top: 22px;
+
+    padding: 15px;
+
+    border-radius: 14px;
+
+    font-size: 13px;
+
+    font-weight: 600;
+}
+
+
+.reading-message {
+    background: #eaf9ee;
+
+    color: #168247;
+}
+
+
+.writing-message {
+    background: #fff8df;
+
+    color: #bd7700;
+}
+
+
+.speaking-message {
+    background: #f3edff;
+
+    color: #6741b7;
+}
+
+
+/* =========================================================
+   BOTTOM GRID
+   ========================================================= */
+
+.bottom-grid {
+    display: grid;
+
+    grid-template-columns:
+        1fr 1.5fr;
+
+    gap: 20px;
+
+    margin-bottom: 25px;
+}
+
+
+.activity-card,
+.achievement-card {
+    background: white;
+
+    border-radius: 22px;
+
+    padding: 25px;
+
+    box-shadow:
+        0 8px 30px rgba(25, 55, 35, 0.07);
+
+    border: 1px solid #edf1ee;
+}
+
+
+.card-heading h2 {
+    margin: 0 0 22px;
+
+    font-size: 20px;
+
+    color: #172033;
+}
+
+
+/* =========================================================
+   ACTIVITY
+   ========================================================= */
+
+.activity-item {
+    display: flex;
+
+    align-items: center;
+
+    gap: 13px;
+
+    padding: 15px 0;
+
+    border-bottom: 1px solid #eef2ef;
+}
+
+
+.activity-item:last-child {
+    border-bottom: none;
+}
+
+
+.activity-check {
+    width: 35px;
+
+    height: 35px;
+
+    border-radius: 50%;
+
+    background: #dcf7e5;
+
+    color: #159447;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    font-weight: bold;
+}
+
+
+.activity-info {
+    flex: 1;
+}
+
+
+.activity-info strong {
+    display: block;
+
+    color: #344054;
+
+    font-size: 14px;
+}
+
+
+.activity-info small {
+    display: block;
+
+    color: #98a2b3;
+
+    margin-top: 4px;
+}
+
+
+.activity-score {
+    background: #eaf9ee;
+
+    color: #168247;
+
+    padding: 7px 10px;
+
+    border-radius: 10px;
+
+    font-size: 12px;
+
+    font-weight: 700;
+}
+
+
+.empty-activity {
+    text-align: center;
+
+    padding: 25px;
+
+    color: #98a2b3;
+}
+
+
+.empty-activity p {
+    margin: 10px 0;
+}
+
+
+.empty-activity a {
+    color: #159447;
+
+    text-decoration: none;
+
+    font-weight: 700;
+}
+
+
+/* =========================================================
+   ACHIEVEMENTS
+   ========================================================= */
+
+.achievement-grid {
+    display: grid;
+
+    grid-template-columns:
+        repeat(5, 1fr);
+
+    gap: 12px;
+}
+
+
+.achievement {
+    text-align: center;
+
+    padding: 16px 8px;
+
+    border: 1px solid #e8eee9;
+
+    border-radius: 16px;
+
+    background: #fbfdfb;
+}
+
+
+.achievement-icon {
+    width: 60px;
+
+    height: 60px;
+
+    border-radius: 50%;
+
+    margin: 0 auto 10px;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    font-size: 29px;
+
+    background: #e8f8ed;
+}
+
+
+.achievement strong {
+    display: block;
+
+    font-size: 13px;
+
+    color: #344054;
+}
+
+
+.achievement small {
+    display: block;
+
+    color: #98a2b3;
+
+    font-size: 11px;
+
+    margin-top: 6px;
+
+    line-height: 1.4;
+}
+
+
+.achievement.locked {
+    opacity: 0.55;
+}
+
+
+/* =========================================================
+   MOTIVATION
+   ========================================================= */
+
+.motivation-card {
+    display: flex;
+
+    align-items: center;
+
+    gap: 18px;
+
+    padding: 22px 28px;
+
+    border-radius: 20px;
+
+    background: linear-gradient(
+        135deg,
+        #e5f9e9,
+        #f6fff7
+    );
+
+    border: 1px solid #d7f0dc;
+}
+
+
+.motivation-icon {
+    font-size: 42px;
+}
+
+
+.motivation-card h2 {
+    margin: 0 0 5px;
+
+    color: #176b3b;
+}
+
+
+.motivation-card p {
+    margin: 0;
+
+    color: #667085;
+}
+
+
+.motivation-card a {
+    margin-left: auto;
+
+    text-decoration: none;
+
+    background: #159447;
+
+    color: white;
+
+    padding: 12px 18px;
+
+    border-radius: 12px;
+
+    font-weight: 700;
+
+    transition: 0.2s;
+}
+
+
+.motivation-card a:hover {
+    background: #11763a;
+
+    transform: translateY(-2px);
+}
+
+
+/* =========================================================
+   RESPONSIVE
+   ========================================================= */
+
+@media (max-width: 1000px) {
+
+    .skills-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .bottom-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .achievement-grid {
+        grid-template-columns:
+            repeat(3, 1fr);
+    }
+
+}
+
+
+@media (max-width: 700px) {
+
+    .progress-wrapper {
+        padding: 25px 15px;
+    }
+
+    .progress-header {
+        flex-direction: column;
+
+        align-items: flex-start;
+
+        gap: 20px;
+    }
+
+    .stats-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .overall-content {
+        flex-direction: column;
+
+        align-items: flex-start;
+    }
+
+    .achievement-grid {
+        grid-template-columns:
+            repeat(2, 1fr);
+    }
+
+    .motivation-card {
+        flex-direction: column;
+
+        align-items: flex-start;
+    }
+
+    .motivation-card a {
+        margin-left: 0;
+    }
+
+}
+/* =========================================================
+   INTELLI​​LEARN - SPEAKING PRACTICE
+   ========================================================= */
+
+.voice-page {
+    background:
+        linear-gradient(
+            135deg,
+            #f1f8f3,
+            #f8fbff
+        );
+
+    min-height: 100vh;
+}
+
+
+/* =========================================================
+   MAIN CONTAINER
+   ========================================================= */
+
+.voice-container {
+
+    min-height:
+        calc(100vh - 90px);
+
+    display: flex;
+
+    justify-content: center;
+
+    align-items: center;
+
+    padding: 50px 20px;
+}
+
+
+/* =========================================================
+   MAIN CARD
+   ========================================================= */
+
+.voice-card {
+
+    width: 900px;
+
+    max-width: 95%;
+
+    background: white;
+
+    border-radius: 30px;
+
+    padding: 45px 55px;
+
+    box-shadow:
+        0 20px 60px
+        rgba(40, 70, 50, 0.12);
+
+    border:
+        1px solid #e6eee8;
+
+    text-align: center;
+
+    animation:
+        voiceCardAppear
+        0.5s
+        ease;
+}
+
+
+@keyframes voiceCardAppear {
+
+    from {
+
+        opacity: 0;
+
+        transform:
+            translateY(20px);
+
+    }
+
+    to {
+
+        opacity: 1;
+
+        transform:
+            translateY(0);
+
+    }
+
+}
+
+
+/* =========================================================
+   HEADER
+   ========================================================= */
+
+.voice-header {
+
+    display: flex;
+
+    flex-direction: column;
+
+    align-items: center;
+
+    gap: 15px;
+
+    margin-bottom: 25px;
+}
+
+
+.voice-icon {
+
+    width: 90px;
+
+    height: 90px;
+
+    border-radius: 50%;
+
+    background:
+        linear-gradient(
+            135deg,
+            #eee7ff,
+            #ddd2ff
+        );
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    font-size: 45px;
+
+    box-shadow:
+        0 10px 25px
+        rgba(120, 80, 180, 0.12);
+}
+
+
+.voice-header h1 {
+
+    margin: 0;
+
+    font-size: 40px;
+
+    color: #182333;
+
+}
+
+
+.voice-header p {
+
+    margin-top: 8px;
+
+    color: #697586;
+
+    font-size: 17px;
+
+}
+
+
+/* =========================================================
+   SENTENCE PROGRESS
+   ========================================================= */
+
+.sentence-progress {
+
+    margin:
+        30px
+        auto;
+
+    max-width: 700px;
+
+    text-align: left;
+}
+
+
+.progress-info {
+
+    display: flex;
+
+    justify-content:
+        space-between;
+
+    margin-bottom: 10px;
+
+    color: #667085;
+
+    font-size: 14px;
+}
+
+
+.progress-info strong {
+
+    color: #2f9e44;
+
+}
+
+
+.sentence-progress-bar {
+
+    width: 100%;
+
+    height: 10px;
+
+    background: #e9f0eb;
+
+    border-radius: 20px;
+
+    overflow: hidden;
+}
+
+
+#sentenceProgressFill {
+
+    height: 100%;
+
+    width: 10%;
+
+    background:
+        linear-gradient(
+            90deg,
+            #55ad5d,
+            #7acb82
+        );
+
+    border-radius: 20px;
+
+    transition:
+        width 0.4s ease;
+}
+
+
+/* =========================================================
+   LANGUAGE
+   ========================================================= */
+
+.language-badge {
+
+    display: inline-block;
+
+    background: #eef8f1;
+
+    color: #2d7a38;
+
+    padding: 9px 18px;
+
+    border-radius: 30px;
+
+    font-size: 14px;
+
+    font-weight: 700;
+
+    margin-bottom: 20px;
+}
+
+
+/* =========================================================
+   SENTENCE BOX
+   ========================================================= */
+
+.sentence-box {
+
+    background:
+        linear-gradient(
+            135deg,
+            #f0f8f2,
+            #f7fbf8
+        );
+
+    border:
+        1px solid #dcebdd;
+
+    border-radius: 22px;
+
+    padding: 35px 30px;
+
+    margin:
+        10px
+        auto
+        30px;
+
+    max-width: 750px;
+
+    min-height: 130px;
+
+    display: flex;
+
+    flex-direction: column;
+
+    justify-content: center;
+
+    box-shadow:
+        inset 0 1px 0
+        rgba(255,255,255,0.8);
+}
+
+
+.sentence-label {
+
+    font-size: 14px;
+
+    color: #718096;
+
+    margin-bottom: 15px;
+
+}
+
+
+#sentence {
+
+    font-size: 30px;
+
+    font-weight: 700;
+
+    color: #172033;
+
+    line-height: 1.5;
+
+}
+
+
+/* =========================================================
+   BUTTONS
+   ========================================================= */
+
+.voice-buttons {
+
+    display: flex;
+
+    justify-content: center;
+
+    gap: 15px;
+
+    flex-wrap: wrap;
+
+}
+
+
+.voice-btn {
+
+    border: none;
+
+    border-radius: 14px;
+
+    padding:
+        16px
+        25px;
+
+    font-size: 16px;
+
+    font-weight: 700;
+
+    cursor: pointer;
+
+    transition:
+        all 0.2s ease;
+
+    min-width: 160px;
+
+}
+
+
+.voice-btn:hover {
+
+    transform:
+        translateY(-3px);
+
+    box-shadow:
+        0 8px 20px
+        rgba(0,0,0,0.10);
+
+}
+
+
+.voice-btn:active {
+
+    transform:
+        translateY(0);
+
+}
+
+
+.voice-btn:disabled {
+
+    opacity: 0.45;
+
+    cursor: not-allowed;
+
+    transform: none;
+
+}
+
+
+.listen-btn {
+
+    background: #55ad5d;
+
+    color: white;
+
+}
+
+
+.start-btn {
+
+    background: #4f86ed;
+
+    color: white;
+
+}
+
+
+.stop-btn {
+
+    background: #ed5d62;
+
+    color: white;
+
+}
+
+
+/* =========================================================
+   STATUS
+   ========================================================= */
+
+.voice-status {
+
+    margin:
+        25px
+        auto
+        15px;
+
+    padding: 14px 20px;
+
+    background: #f7f9f8;
+
+    border-radius: 14px;
+
+    color: #475467;
+
+    font-weight: 600;
+
+    max-width: 600px;
+}
+
+
+.status-dot {
+
+    color: #55ad5d;
+
+}
+
+
+/* =========================================================
+   TRANSCRIPT
+   ========================================================= */
+
+.transcript-box {
+
+    margin:
+        20px
+        auto;
+
+    max-width: 650px;
+
+    padding: 20px;
+
+    background: #f7f8fc;
+
+    border-radius: 16px;
+
+    text-align: left;
+
+}
+
+
+.transcript-title {
+
+    color: #667085;
+
+    font-size: 14px;
+
+    margin-bottom: 8px;
+
+    font-weight: 700;
+
+}
+
+
+#transcript {
+
+    color: #172033;
+
+    font-size: 18px;
+
+    font-weight: 600;
+
+}
+
+
+/* =========================================================
+   RESULT
+   ========================================================= */
+
+.voice-result {
+
+    margin: 20px auto;
+
+    max-width: 650px;
+
+    font-size: 17px;
+
+    font-weight: 700;
+
+    line-height: 1.6;
+
+}
+
+
+.voice-result.success {
+
+    background: #e9f8ed;
+
+    color: #16803c;
+
+    padding: 16px;
+
+    border-radius: 14px;
+
+}
+
+
+.voice-result.retry {
+
+    background: #fff7df;
+
+    color: #a86c00;
+
+    padding: 16px;
+
+    border-radius: 14px;
+
+}
+
+
+/* =========================================================
+   NEXT BUTTON
+   ========================================================= */
+
+.next-button {
+
+    margin-top: 10px;
+
+    border: none;
+
+    background:
+        linear-gradient(
+            135deg,
+            #55ad5d,
+            #3d9848
+        );
+
+    color: white;
+
+    padding:
+        16px
+        35px;
+
+    border-radius: 14px;
+
+    font-size: 17px;
+
+    font-weight: 700;
+
+    cursor: pointer;
+
+    transition:
+        all 0.2s ease;
+
+}
+
+
+.next-button:hover {
+
+    transform:
+        translateY(-3px);
+
+    box-shadow:
+        0 10px 25px
+        rgba(50,140,70,0.20);
+
+}
+
+
+/* =========================================================
+   COMPLETION
+   ========================================================= */
+
+.completion-box {
+
+    padding: 35px;
+
+}
+
+
+.completion-icon {
+
+    font-size: 70px;
+
+    margin-bottom: 10px;
+
+}
+
+
+.completion-box h2 {
+
+    font-size: 32px;
+
+    color: #182333;
+
+    margin: 10px 0;
+
+}
+
+
+.completion-box p {
+
+    color: #667085;
+
+    font-size: 17px;
+
+    margin-bottom: 25px;
+
+}
+
+
+.completion-buttons {
+
+    display: flex;
+
+    justify-content: center;
+
+    gap: 15px;
+
+    flex-wrap: wrap;
+
+}
+
+
+.practice-again,
+.progress-button {
+
+    border: none;
+
+    padding:
+        14px
+        22px;
+
+    border-radius: 12px;
+
+    font-weight: 700;
+
+    font-size: 15px;
+
+    cursor: pointer;
+
+}
+
+
+.practice-again {
+
+    background: #4f86ed;
+
+    color: white;
+
+}
+
+
+.progress-button {
+
+    background: #55ad5d;
+
+    color: white;
+
+}
+
+
+/* =========================================================
+   MOBILE
+   ========================================================= */
+
+@media (max-width: 700px) {
+
+    .voice-card {
+
+        padding:
+            30px
+            20px;
+
+    }
+
+
+    .voice-header h1 {
+
+        font-size: 30px;
+
+    }
+
+
+    #sentence {
+
+        font-size: 22px;
+
+    }
+
+
+    .voice-btn {
+
+        width: 100%;
+
+    }
+
+
+    .voice-buttons {
+
+        flex-direction: column;
+
+    }
+
+
+    .completion-buttons {
+
+        flex-direction: column;
+
+    }
+
+}
+
+/* =========================================================
+   INTELLILEARN DASHBOARD - BEAUTIFUL DESIGN
+   ========================================================= */
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: Arial, Helvetica, sans-serif;
+    background: #f4f8f3;
+    color: #263238;
+}
+
+
+/* =========================================================
+   NAVIGATION
+   ========================================================= */
+
+.navbar {
+    width: 100%;
+    background: #ffffff;
+    padding: 18px 7%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid #e6eee6;
+    box-shadow: 0 3px 15px rgba(0,0,0,0.04);
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+}
+
+.logo {
+    font-size: 27px;
+    font-weight: 800;
+    color: #4fa653;
+}
+
+.nav-links {
+    display: flex;
+    align-items: center;
+    gap: 28px;
+}
+
+.nav-links a {
+    text-decoration: none;
+    color: #343a40;
+    font-size: 15px;
+    font-weight: 700;
+    transition: 0.2s;
+}
+
+.nav-links a:hover {
+    color: #4fa653;
+}
+
+
+/* =========================================================
+   MAIN DASHBOARD
+   ========================================================= */
+
+.dashboard-container {
+    max-width: 1180px;
+    margin: auto;
+    padding: 40px 25px 70px;
+}
+
+
+/* =========================================================
+   WELCOME CARD
+   ========================================================= */
+
+.dashboard-welcome {
+    background: linear-gradient(135deg, #eaf7e9, #ffffff);
+    border: 1px solid #dcebdc;
+    border-radius: 28px;
+    padding: 38px 42px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 28px;
+    box-shadow: 0 10px 30px rgba(50,100,50,0.06);
+}
+
+.welcome-small {
+    color: #58a65c !important;
+    font-size: 13px !important;
+    font-weight: 800;
+    letter-spacing: 1.5px;
+    margin-bottom: 8px;
+}
+
+.dashboard-welcome h1 {
+    font-size: 36px;
+    color: #26352a;
+    margin-bottom: 8px;
+}
+
+.dashboard-welcome p {
+    color: #68736b;
+    font-size: 16px;
+}
+
+.language-badge {
+    background: #ffffff;
+    border: 1px solid #dcebdc;
+    padding: 14px 22px;
+    border-radius: 40px;
+    color: #4c944f;
+    font-weight: 700;
+    box-shadow: 0 5px 18px rgba(0,0,0,0.05);
+}
+
+
+/* =========================================================
+   STATISTICS
+   ========================================================= */
+
+.stats-container {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+    margin-bottom: 28px;
+}
+
+.stat-card {
+    background: #ffffff;
+    border-radius: 22px;
+    padding: 25px;
+    display: flex;
+    align-items: center;
+    gap: 18px;
+    border: 1px solid #e2ebe2;
+    box-shadow: 0 8px 25px rgba(0,0,0,0.05);
+    transition: 0.25s ease;
+}
+
+.stat-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 15px 35px rgba(0,0,0,0.09);
+}
+
+.stat-icon {
+    width: 58px;
+    height: 58px;
+    border-radius: 17px;
+    background: #edf8ed;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 28px;
+}
+
+.stat-card h3 {
+    font-size: 25px;
+    color: #26352a;
+    margin-bottom: 3px;
+}
+
+.stat-card p {
+    font-size: 13px;
+    color: #7a847c;
+}
+
+
+/* =========================================================
+   DASHBOARD CARD
+   ========================================================= */
+
+.dashboard-card {
+    background: #ffffff;
+    border: 1px solid #e1e9e1;
+    border-radius: 24px;
+    padding: 30px;
+    margin-bottom: 28px;
+    box-shadow: 0 8px 25px rgba(0,0,0,0.045);
+}
+
+.card-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 22px;
+}
+
+.card-header h2 {
+    font-size: 23px;
+    color: #26352a;
+    margin-bottom: 5px;
+}
+
+.card-header p {
+    color: #7a847c;
+    font-size: 14px;
+}
+
+.card-header strong {
+    font-size: 30px;
+    color: #58a65c;
+}
+
+
+/* =========================================================
+   OVERALL PROGRESS
+   ========================================================= */
+
+.progress-container {
+    width: 100%;
+    height: 14px;
+    background: #e8eee8;
+    border-radius: 20px;
+    overflow: hidden;
+}
+
+.progress-bar {
+    height: 100%;
+    background: linear-gradient(
+        90deg,
+        #58a65c,
+        #83c987
+    );
+    border-radius: 20px;
+    transition: width 0.8s ease;
+}
+
+
+/* =========================================================
+   LEARNING PATH
+   ========================================================= */
+
+.lesson-item {
+    display: flex;
+    align-items: center;
+    gap: 18px;
+    padding: 18px;
+    margin-top: 14px;
+    border-radius: 18px;
+    background: #f8fbf8;
+    border: 1px solid #e5ece5;
+    transition: 0.25s;
+}
+
+.lesson-item:hover {
+    transform: translateX(5px);
+    background: #f1f9f1;
+}
+
+.lesson-icon {
+    width: 52px;
+    height: 52px;
+    border-radius: 15px;
+    background: #e9f6e9;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 25px;
+}
+
+.lesson-info {
+    flex: 1;
+}
+
+.lesson-info h3 {
+    font-size: 16px;
+    color: #303830;
+    margin-bottom: 4px;
+}
+
+.lesson-info p {
+    font-size: 13px;
+    color: #7a827b;
+}
+
+
+/* COMPLETED */
+
+.lesson-item.completed {
+    border-left: 5px solid #58a65c;
+}
+
+
+/* CURRENT */
+
+.lesson-item.current {
+    background: #f1f9f1;
+    border: 2px solid #58a65c;
+}
+
+
+/* LOCKED */
+
+.lesson-item.locked {
+    opacity: 0.65;
+}
+
+
+/* =========================================================
+   START BUTTON
+   ========================================================= */
+
+.lesson-button {
+    text-decoration: none;
+    background: #58a65c;
+    color: white;
+    padding: 10px 19px;
+    border-radius: 10px;
+    font-size: 12px;
+    font-weight: 800;
+    transition: 0.2s;
+}
+
+.lesson-button:hover {
+    background: #438a48;
+    transform: translateY(-2px);
+}
+
+
+/* =========================================================
+   CONTINUE BUTTON
+   ========================================================= */
+
+.continue-container {
+    text-align: center;
+    margin: 35px 0;
+}
+
+.primary-btn {
+    display: inline-block;
+    padding: 15px 32px;
+    background: #58a65c;
+    color: white;
+    text-decoration: none;
+    border-radius: 13px;
+    font-weight: 800;
+    box-shadow: 0 7px 18px rgba(88,166,92,0.25);
+    transition: 0.25s;
+}
+
+.primary-btn:hover {
+    background: #478d4b;
+    transform: translateY(-3px);
+    box-shadow: 0 12px 25px rgba(88,166,92,0.3);
+}
+
+
+/* =========================================================
+   LEARNING CARDS
+   ========================================================= */
+
+.learning-card {
+    background: #ffffff;
+    padding: 28px;
+    border-radius: 22px;
+    border: 1px solid #e2ebe2;
+    box-shadow: 0 8px 25px rgba(0,0,0,0.05);
+    margin-bottom: 20px;
+    transition: 0.25s;
+}
+
+.learning-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 15px 30px rgba(0,0,0,0.08);
+}
+
+.learning-card .icon {
+    font-size: 42px;
+    margin-bottom: 12px;
+}
+
+.learning-card h3 {
+    font-size: 20px;
+    margin-bottom: 8px;
+}
+
+.learning-card p {
+    color: #707870;
+    font-size: 14px;
+    margin-bottom: 15px;
+}
+
+
+/* =========================================================
+   FOOTER
+   ========================================================= */
+
+.footer {
+    text-align: center;
+    padding: 30px;
+    color: #7a847c;
+    font-size: 13px;
+}
+
+
+/* =========================================================
+   MOBILE
+   ========================================================= */
+
+@media (max-width: 768px) {
+
+    .navbar {
+        flex-direction: column;
+        gap: 15px;
+        padding: 15px;
+    }
+
+    .nav-links {
+        gap: 12px;
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+
+    .dashboard-welcome {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 20px;
+        padding: 28px;
+    }
+
+    .dashboard-welcome h1 {
+        font-size: 28px;
+    }
+
+    .stats-container {
+        grid-template-columns: 1fr;
+    }
+
+    .dashboard-container {
+        padding: 25px 15px 50px;
+    }
+
+    .dashboard-card {
+        padding: 22px;
+    }
+}
+
+/* =====================================================
+   LEARNING GAMES
+===================================================== */
+
+.games-section {
+    margin-top: 40px;
+}
+
+.games-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 20px;
+    margin-top: 20px;
+}
+
+.game-card {
+    background: #ffffff;
+    border: 1px solid #e2e8e3;
+    border-radius: 18px;
+    padding: 24px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.06);
+    transition: 0.25s;
+}
+
+.game-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.10);
+}
+
+.game-icon {
+    width: 60px;
+    height: 60px;
+    background: #eef8f0;
+    border-radius: 15px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    font-size: 30px;
+    margin-bottom: 15px;
+}
+
+.game-card h3 {
+    margin: 0 0 8px;
+    font-size: 20px;
+    color: #26382e;
+}
+
+.game-card p {
+    color: #718078;
+    line-height: 1.5;
+    min-height: 65px;
+}
+
+.game-tag {
+    display: inline-block;
+    background: #edf8ef;
+    color: #438f4d;
+
+    padding: 5px 10px;
+    border-radius: 15px;
+
+    font-size: 12px;
+    font-weight: 700;
+
+    margin-bottom: 12px;
+}
+
+.game-button {
+    width: 100%;
+    border: none;
+
+    padding: 12px;
+
+    border-radius: 10px;
+
+    background: #54a65d;
+    color: white;
+
+    font-size: 14px;
+    font-weight: 700;
+
+    cursor: pointer;
+}
+
+.game-button:hover {
+    background: #438e4c;
+}
+
+
+/* =====================================================
+   GAME AREA
+===================================================== */
+
+.game-area {
+    display: none;
+
+    margin-top: 25px;
+
+    background: #ffffff;
+
+    border: 1px solid #dcebdd;
+
+    border-radius: 18px;
+
+    padding: 28px;
+
+    box-shadow:
+        0 6px 20px rgba(0, 0, 0, 0.07);
+}
+
+.game-area.active {
+    display: block;
+}
+
+.game-area h2 {
+    margin-top: 0;
+    color: #26382e;
+}
+
+.game-question {
+    font-size: 22px;
+    font-weight: 700;
+
+    margin: 20px 0;
+}
+
+.game-options {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 12px;
+}
+
+.game-option {
+    border: 1px solid #dce5de;
+    background: #f8fbf8;
+
+    padding: 14px;
+
+    border-radius: 10px;
+
+    cursor: pointer;
+
+    font-weight: 600;
+}
+
+.game-option:hover {
+    background: #edf8ef;
+}
+
+.game-result {
+    margin-top: 18px;
+
+    font-weight: 700;
+
+    min-height: 25px;
+}
+
+.close-game {
+    margin-top: 20px;
+
+    border: none;
+
+    padding: 10px 18px;
+
+    border-radius: 10px;
+
+    background: #e8efea;
+
+    cursor: pointer;
+}
+
+
+/* =====================================================
+   WORD SCRAMBLE
+===================================================== */
+
+.scramble-word {
+    text-align: center;
+
+    font-size: 34px;
+
+    font-weight: 800;
+
+    letter-spacing: 6px;
+
+    color: #3f914d;
+
+    margin: 25px 0;
+}
+
+.scramble-input {
+    width: 100%;
+
+    padding: 13px;
+
+    border: 1px solid #dce5de;
+
+    border-radius: 10px;
+
+    font-size: 16px;
+
+    margin-bottom: 12px;
+}
+
+
+/* =====================================================
+   MEMORY GAME
+===================================================== */
+
+.memory-grid {
+    display: grid;
+
+    grid-template-columns: repeat(4, 1fr);
+
+    gap: 10px;
+
+    max-width: 500px;
+}
+
+.memory-card {
+    height: 80px;
+
+    border: none;
+
+    border-radius: 12px;
+
+    background: #54a65d;
+
+    color: white;
+
+    font-size: 20px;
+
+    font-weight: 700;
+
+    cursor: pointer;
+}
+
+.memory-card.revealed {
+    background: #edf8ef;
+
+    color: #26382e;
+}
+
+
+/* =====================================================
+   MOBILE
+===================================================== */
+
+@media (max-width: 1100px) {
+
+    .games-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+}
+
+@media (max-width: 650px) {
+
+    .games-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .game-options {
+        grid-template-columns: 1fr;
+    }
+
+    .memory-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+}

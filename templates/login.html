@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>Login - IntelliLearn</title>
+
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='style.css') }}">
+
+</head>
+
+
+<body class="register-page">
+
+
+    <!-- ==============================
+         NAVIGATION BAR
+         ============================== -->
+
+    <nav class="navbar">
+
+        <div class="logo">
+            🌱 IntelliLearn
+        </div>
+
+
+        <div class="nav-links">
+
+            <a href="/">
+                {{ t('home') }}
+            </a>
+
+            <a href="/learn">
+                {{ t('learn') }}
+            </a>
+
+            <a href="/progress">
+                {{ t('progress') }}
+            </a>
+
+            <a href="/profile">
+                {{ t('profile') }}
+            </a>
+
+            <a href="/register">
+                {{ t('register') }}
+            </a>
+
+        </div>
+
+    </nav>
+
+
+
+    <!-- ==============================
+         LOGIN HEADING
+         ============================== -->
+
+    <section class="hero">
+
+        <h1>
+            {{ t('welcome_back') }} 👋
+        </h1>
+
+        <p>
+            {{ t('continue_learning') }}
+        </p>
+
+    </section>
+
+
+
+    <!-- ==============================
+         LOGIN FORM
+         ============================== -->
+
+    <section class="learning-section">
+
+
+        <div class="learning-card register-card">
+
+
+            <form action="/login" method="POST">
+
+
+                <!-- ERROR MESSAGE -->
+
+                {% if error %}
+
+                    <div class="login-error">
+                        {{ error }}
+                    </div>
+
+                {% endif %}
+
+
+
+                <!-- EMAIL -->
+
+                <label for="email">
+
+                    {{ t('email') }}
+
+                </label>
+
+
+                <input
+                    type="email"
+                    id="email"
+                    name="email"
+                    placeholder="{{ t('enter_email') }}"
+                    required
+                >
+
+
+
+                <!-- PASSWORD -->
+
+                <label for="password">
+
+                    {{ t('password') }}
+
+                </label>
+
+
+                <input
+                    type="password"
+                    id="password"
+                    name="password"
+                    placeholder="{{ t('enter_password') }}"
+                    required
+                >
+
+
+
+                <!-- LOGIN BUTTON -->
+
+                <button
+                    type="submit"
+                    class="primary-btn"
+                >
+
+                    {{ t('login') }}
+
+                </button>
+
+
+            </form>
+
+
+
+            <!-- REGISTER LINK -->
+
+            <p class="login-text">
+
+                {{ t('dont_have_account') }}
+
+                <a href="/register">
+
+                    {{ t('create_account') }}
+
+                </a>
+
+            </p>
+
+
+        </div>
+
+    </section>
+
+
+
+    <!-- FOOTER -->
+
+    <footer class="footer">
+
+        <p>
+            © 2026 IntelliLearn
+        </p>
+
+    </footer>
+
+
+</body>
+
+</html>

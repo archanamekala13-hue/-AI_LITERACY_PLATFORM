@@ -1,0 +1,2535 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+
+```
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>IntelliLearn - {{ t('dashboard') }}</title>
+
+<style>
+
+
+     /* ======================================================
+   LEVEL BASED LEARNING PATH
+======================================================= */
+
+.learning-path-card {
+    margin-bottom: 22px;
+}
+
+.learning-path {
+    display: flex;
+    flex-direction: column;
+}
+
+.learning-level {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    padding: 18px;
+    border-radius: 16px;
+    border: 1px solid #e5ece7;
+    background: #ffffff;
+    transition: 0.2s;
+}
+
+.learning-level:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 15px rgba(46, 139, 87, 0.08);
+}
+
+.level-completed {
+    border-left: 5px solid #2e8b57;
+}
+
+.level-current {
+    border-left: 5px solid #f0b429;
+    background: #fffdf6;
+}
+
+.level-locked {
+    opacity: 0.55;
+    background: #f7f8f7;
+}
+
+.level-number {
+    width: 42px;
+    height: 42px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 700;
+    font-size: 14px;
+    background: #edf8f1;
+    color: #2e8b57;
+    flex-shrink: 0;
+}
+
+.level-icon {
+    width: 50px;
+    height: 50px;
+    border-radius: 14px;
+    background: #f1f7f3;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 25px;
+    flex-shrink: 0;
+}
+
+.level-info {
+    flex: 1;
+}
+
+.level-label {
+    font-size: 10px;
+    font-weight: 700;
+    color: #718078;
+    text-transform: uppercase;
+}
+
+.level-info h3 {
+    margin: 4px 0;
+    font-size: 16px;
+    color: #26382e;
+}
+
+.level-info p {
+    margin: 0;
+    font-size: 11px;
+    color: #718078;
+}
+
+.level-button {
+    background: #2e8b57;
+    color: white;
+    padding: 9px 14px;
+    border-radius: 9px;
+    font-size: 11px;
+    font-weight: 600;
+    white-space: nowrap;
+}
+
+.level-button:hover {
+    background: #247546;
+}
+
+.locked-button {
+    color: #8a938d;
+    background: #e9ecea;
+    padding: 9px 14px;
+    border-radius: 9px;
+    font-size: 11px;
+    font-weight: 600;
+    white-space: nowrap;
+}
+
+.path-connector {
+    width: 3px;
+    height: 25px;
+    background: #d9e7de;
+    margin-left: 38px;
+}
+
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: "Segoe UI", Arial, sans-serif;
+    }
+
+    body {
+        background: #f4f8f5;
+        color: #26382e;
+    }
+
+    a {
+        text-decoration: none;
+    }
+
+    /* ================= SIDEBAR ================= */
+
+    .sidebar {
+        position: fixed;
+        left: 0;
+        top: 0;
+
+        width: 245px;
+        height: 100vh;
+
+        background: #ffffff;
+
+        border-right: 1px solid #e3ebe5;
+
+        padding: 25px 18px;
+
+        display: flex;
+        flex-direction: column;
+
+        z-index: 100;
+    }
+
+    .logo {
+        display: flex;
+        align-items: center;
+
+        gap: 10px;
+
+        padding: 5px 10px;
+
+        margin-bottom: 35px;
+    }
+
+    .logo-icon {
+        font-size: 32px;
+    }
+
+    .logo-text {
+        font-size: 23px;
+        font-weight: 700;
+
+        color: #2e8b57;
+    }
+
+    .menu {
+        display: flex;
+        flex-direction: column;
+
+        gap: 7px;
+    }
+
+    .menu a {
+        display: flex;
+        align-items: center;
+
+        gap: 13px;
+
+        padding: 13px 15px;
+
+        border-radius: 12px;
+
+        color: #607068;
+
+        font-size: 15px;
+
+        transition: 0.25s;
+    }
+
+    .menu a:hover {
+        background: #edf8f1;
+        color: #2e8b57;
+    }
+
+    .menu a.active {
+        background: #dff3e6;
+        color: #23834d;
+
+        font-weight: 700;
+    }
+
+    .menu-icon {
+        width: 25px;
+
+        text-align: center;
+
+        font-size: 19px;
+    }
+
+    .logout {
+        margin-top: auto;
+    }
+
+    .logout a {
+        display: flex;
+        align-items: center;
+
+        gap: 13px;
+
+        padding: 13px 15px;
+
+        border-radius: 12px;
+
+        color: #d9534f;
+
+        font-size: 15px;
+    }
+
+    .logout a:hover {
+        background: #fff0ef;
+    }
+
+    /* ================= MAIN ================= */
+
+    .main {
+        margin-left: 245px;
+
+        padding: 30px 40px;
+
+        min-height: 100vh;
+    }
+
+    /* ================= TOP SECTION ================= */
+
+    .top-section {
+        display: flex;
+
+        justify-content: space-between;
+
+        align-items: center;
+
+        margin-bottom: 25px;
+    }
+
+    .welcome h1 {
+        font-size: 28px;
+
+        margin-bottom: 7px;
+
+        color: #26382e;
+    }
+
+    .welcome p {
+        color: #718078;
+
+        font-size: 14px;
+    }
+
+    .profile-box {
+        display: flex;
+
+        align-items: center;
+
+        gap: 12px;
+
+        background: white;
+
+        padding: 9px 15px;
+
+        border-radius: 30px;
+
+        box-shadow: 0 4px 14px rgba(0, 0, 0, 0.05);
+    }
+
+    .profile-image {
+        width: 42px;
+        height: 42px;
+
+        border-radius: 50%;
+
+        background: #dff3e6;
+
+        display: flex;
+
+        align-items: center;
+        justify-content: center;
+
+        font-size: 21px;
+    }
+
+    .profile-info strong {
+        display: block;
+
+        font-size: 14px;
+    }
+
+    .profile-info small {
+        color: #7b8780;
+
+        font-size: 11px;
+    }
+
+    /* ================= LANGUAGE CARD ================= */
+
+    .language-card {
+
+        background: linear-gradient(
+            135deg,
+            #2e8b57,
+            #45a66c
+        );
+
+        color: white;
+
+        border-radius: 20px;
+
+        padding: 22px 25px;
+
+        margin-bottom: 22px;
+
+        display: flex;
+
+        justify-content: space-between;
+
+        align-items: center;
+
+        box-shadow: 0 7px 20px rgba(46, 139, 87, 0.15);
+    }
+
+    .language-text h2 {
+        font-size: 20px;
+
+        margin-bottom: 7px;
+    }
+
+    .language-text p {
+        font-size: 13px;
+
+        opacity: 0.9;
+    }
+
+    .language-details {
+        display: flex;
+
+        gap: 30px;
+    }
+
+    .language-item {
+        text-align: center;
+    }
+
+    .language-item span {
+        display: block;
+
+        font-size: 11px;
+
+        opacity: 0.8;
+
+        margin-bottom: 4px;
+    }
+
+    .language-item strong {
+        font-size: 16px;
+    }
+
+    /* ================= STATISTICS ================= */
+
+    .stats {
+
+        display: grid;
+
+        grid-template-columns: repeat(3, 1fr);
+
+        gap: 18px;
+
+        margin-bottom: 22px;
+    }
+
+    .stat-card {
+
+        background: white;
+
+        border-radius: 18px;
+
+        padding: 20px;
+
+        display: flex;
+
+        align-items: center;
+
+        gap: 15px;
+
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+    }
+
+    .stat-icon {
+
+        width: 52px;
+        height: 52px;
+
+        border-radius: 15px;
+
+        background: #edf8f1;
+
+        display: flex;
+
+        align-items: center;
+        justify-content: center;
+
+        font-size: 25px;
+    }
+
+    .stat-content span {
+
+        display: block;
+
+        color: #7b8780;
+
+        font-size: 12px;
+
+        margin-bottom: 4px;
+    }
+
+    .stat-content strong {
+
+        font-size: 23px;
+
+        color: #26382e;
+    }
+
+    /* ================= TWO COLUMN ================= */
+
+    .two-column {
+
+        display: grid;
+
+        grid-template-columns: 1.55fr 1fr;
+
+        gap: 22px;
+
+        margin-bottom: 22px;
+    }
+
+    .card {
+
+        background: white;
+
+        border-radius: 20px;
+
+        padding: 25px;
+
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+    }
+
+    .card-header {
+
+        display: flex;
+
+        justify-content: space-between;
+
+        align-items: center;
+
+        margin-bottom: 23px;
+    }
+
+    .card-header h2 {
+
+        font-size: 19px;
+    }
+
+    .card-header span {
+
+        color: #2e8b57;
+
+        font-size: 12px;
+
+        font-weight: 600;
+    }
+
+    /* ================= OVERALL PROGRESS ================= */
+
+    .overall-content {
+
+        display: flex;
+
+        align-items: center;
+
+        gap: 35px;
+    }
+
+    .progress-circle {
+
+        width: 155px;
+        height: 155px;
+
+        border-radius: 50%;
+
+        background:
+
+            conic-gradient(
+
+                #2e8b57 calc(var(--progress) * 1%),
+
+                #e7eee9 0
+            );
+
+        display: flex;
+
+        justify-content: center;
+
+        align-items: center;
+
+        flex-shrink: 0;
+    }
+
+    .circle-inner {
+
+        width: 115px;
+        height: 115px;
+
+        border-radius: 50%;
+
+        background: white;
+
+        display: flex;
+
+        flex-direction: column;
+
+        justify-content: center;
+
+        align-items: center;
+    }
+
+    .circle-inner strong {
+
+        font-size: 28px;
+
+        color: #2e8b57;
+    }
+
+    .circle-inner span {
+
+        color: #7b8780;
+
+        font-size: 12px;
+    }
+
+    .progress-list {
+
+        flex: 1;
+    }
+
+    .progress-row {
+
+        margin-bottom: 17px;
+    }
+
+    .progress-label {
+
+        display: flex;
+
+        justify-content: space-between;
+
+        margin-bottom: 7px;
+
+        font-size: 13px;
+    }
+
+    .progress-label strong {
+
+        color: #2e8b57;
+    }
+
+    .progress-bar {
+
+        width: 100%;
+
+        height: 9px;
+
+        background: #e8eee9;
+
+        border-radius: 20px;
+
+        overflow: hidden;
+    }
+
+    .progress-fill {
+
+        height: 100%;
+
+        background: #2e8b57;
+
+        border-radius: 20px;
+
+        transition: width 0.5s ease;
+    }
+
+    /* ================= DAILY GOAL ================= */
+
+    .goal-card {
+
+        text-align: center;
+    }
+
+    .goal-icon {
+
+        font-size: 45px;
+
+        margin-bottom: 8px;
+    }
+
+    .goal-number {
+
+        font-size: 32px;
+
+        font-weight: 700;
+
+        color: #2e8b57;
+    }
+
+    .goal-label {
+
+        color: #718078;
+
+        font-size: 13px;
+
+        margin: 5px 0 20px;
+    }
+
+    .goal-bar {
+
+        width: 100%;
+
+        height: 11px;
+
+        background: #e8eee9;
+
+        border-radius: 20px;
+
+        overflow: hidden;
+
+        margin-bottom: 18px;
+    }
+
+    .goal-fill {
+
+        height: 100%;
+
+        width: 0%;
+
+        background: #2e8b57;
+
+        border-radius: 20px;
+    }
+
+    .goal-button {
+
+        display: inline-block;
+
+        background: #2e8b57;
+
+        color: white;
+
+        padding: 11px 23px;
+
+        border-radius: 11px;
+
+        font-size: 13px;
+
+        font-weight: 600;
+
+        transition: 0.2s;
+    }
+
+    .goal-button:hover {
+
+        background: #247546;
+
+        transform: translateY(-2px);
+    }
+
+    /* ================= ADAPTIVE RECOMMENDATION ================= */
+
+    .recommendation {
+
+        margin-bottom: 22px;
+
+        border: 2px solid #dcefe3;
+
+        background: linear-gradient(
+            135deg,
+            #ffffff,
+            #f2faf5
+        );
+
+        position: relative;
+
+        overflow: hidden;
+    }
+
+    .ai-badge {
+
+        display: inline-flex;
+
+        align-items: center;
+
+        gap: 6px;
+
+        background: #e0f4e7;
+
+        color: #247546;
+
+        padding: 6px 11px;
+
+        border-radius: 20px;
+
+        font-size: 11px;
+
+        font-weight: 700;
+    }
+
+    .recommendation-content {
+
+        display: flex;
+
+        justify-content: space-between;
+
+        align-items: center;
+
+        gap: 25px;
+    }
+
+    .recommendation-left {
+
+        display: flex;
+
+        align-items: center;
+
+        gap: 18px;
+    }
+
+    .recommendation-icon {
+
+        width: 70px;
+        height: 70px;
+
+        border-radius: 18px;
+
+        background: #dff3e6;
+
+        display: flex;
+
+        align-items: center;
+
+        justify-content: center;
+
+        font-size: 33px;
+
+        flex-shrink: 0;
+    }
+
+    .recommendation-text h3 {
+
+        font-size: 18px;
+
+        margin-bottom: 7px;
+
+        color: #26382e;
+    }
+
+    .recommendation-text p {
+
+        color: #718078;
+
+        font-size: 13px;
+
+        line-height: 1.5;
+
+        max-width: 650px;
+    }
+
+    .skill-tag {
+
+        display: inline-block;
+
+        margin-top: 9px;
+
+        padding: 5px 10px;
+
+        background: #edf8f1;
+
+        color: #2e8b57;
+
+        border-radius: 8px;
+
+        font-size: 11px;
+
+        font-weight: 700;
+    }
+
+    .score-tag {
+
+        display: inline-block;
+
+        margin-top: 9px;
+
+        margin-left: 5px;
+
+        padding: 5px 10px;
+
+        background: #fff4d6;
+
+        color: #9a7110;
+
+        border-radius: 8px;
+
+        font-size: 11px;
+
+        font-weight: 700;
+    }
+
+    .start-button {
+
+        white-space: nowrap;
+
+        background: #2e8b57;
+
+        color: white;
+
+        padding: 12px 22px;
+
+        border-radius: 11px;
+
+        font-size: 13px;
+
+        font-weight: 600;
+
+        transition: 0.2s;
+    }
+
+    .start-button:hover {
+
+        background: #247546;
+
+        transform: translateY(-2px);
+    }
+
+    /* ================= CONTENT RECOMMENDATIONS ================= */
+
+.content-recommendation-card {
+
+    margin-bottom: 22px;
+
+    border: 2px solid #e3efe7;
+
+    background: #ffffff;
+}
+
+.content-recommendation-list {
+
+    display: grid;
+
+    grid-template-columns: repeat(2, 1fr);
+
+    gap: 15px;
+}
+
+.content-recommendation-item {
+
+    border: 1px solid #e5ece7;
+
+    border-radius: 16px;
+
+    padding: 18px;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: space-between;
+
+    gap: 15px;
+
+    transition: 0.2s;
+
+    background: #fbfdfb;
+}
+
+.content-recommendation-item:hover {
+
+    transform: translateY(-3px);
+
+    border-color: #a9d9bb;
+
+    box-shadow: 0 7px 16px rgba(46, 139, 87, 0.08);
+}
+
+.content-left {
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 14px;
+
+    min-width: 0;
+}
+
+.content-icon {
+
+    width: 52px;
+
+    height: 52px;
+
+    border-radius: 14px;
+
+    background: #edf8f1;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    font-size: 25px;
+
+    flex-shrink: 0;
+}
+
+.content-info h3 {
+
+    font-size: 15px;
+
+    margin-bottom: 5px;
+
+    color: #26382e;
+}
+
+.content-info p {
+
+    color: #718078;
+
+    font-size: 11px;
+
+    line-height: 1.4;
+
+    margin-bottom: 7px;
+}
+
+.content-score {
+
+    display: inline-block;
+
+    padding: 4px 8px;
+
+    background: #fff4d6;
+
+    color: #9a7110;
+
+    border-radius: 7px;
+
+    font-size: 10px;
+
+    font-weight: 700;
+}
+
+.content-button {
+
+    white-space: nowrap;
+
+    background: #2e8b57;
+
+    color: white;
+
+    padding: 9px 13px;
+
+    border-radius: 9px;
+
+    font-size: 11px;
+
+    font-weight: 600;
+
+    transition: 0.2s;
+}
+
+.content-button:hover {
+
+    background: #247546;
+
+    transform: translateY(-2px);
+}
+
+.recommendation-reason {
+
+    color: #718078;
+
+    font-size: 11px;
+
+    margin-top: 5px;
+}
+
+    /* ================= LEARNING AREAS ================= */
+
+    .learning-card {
+
+        margin-bottom: 22px;
+    }
+
+    .learning-grid {
+
+        display: grid;
+
+        grid-template-columns: repeat(3, 1fr);
+
+        gap: 15px;
+    }
+
+    .learning-item {
+
+        border: 1px solid #e5ece7;
+
+        border-radius: 16px;
+
+        padding: 18px;
+
+        transition: 0.2s;
+    }
+
+    .learning-item:hover {
+
+        transform: translateY(-3px);
+
+        border-color: #a9d9bb;
+
+        box-shadow: 0 7px 16px rgba(46, 139, 87, 0.08);
+    }
+
+    .learning-icon {
+
+        font-size: 30px;
+
+        margin-bottom: 10px;
+    }
+
+    .learning-item h3 {
+
+        font-size: 16px;
+
+        margin-bottom: 5px;
+    }
+
+    .learning-item p {
+
+        color: #7b8780;
+
+        font-size: 12px;
+
+        margin-bottom: 13px;
+    }
+
+    .mini-progress {
+
+        height: 7px;
+
+        width: 100%;
+
+        background: #e8eee9;
+
+        border-radius: 20px;
+
+        overflow: hidden;
+    }
+
+    .mini-fill {
+
+        height: 100%;
+
+        background: #2e8b57;
+
+        border-radius: 20px;
+    }
+
+    /* ================= ACHIEVEMENTS ================= */
+
+    .achievement-card {
+
+        margin-bottom: 30px;
+    }
+
+    .achievement-grid {
+
+        display: grid;
+
+        grid-template-columns: repeat(3, 1fr);
+
+        gap: 15px;
+    }
+
+    .achievement {
+
+        background: #f7faf8;
+
+        border-radius: 15px;
+
+        padding: 18px;
+
+        text-align: center;
+    }
+
+    .achievement-icon {
+
+        font-size: 32px;
+
+        margin-bottom: 8px;
+    }
+
+    .achievement h3 {
+
+        font-size: 14px;
+
+        margin-bottom: 5px;
+    }
+
+    .achievement p {
+
+        color: #7b8780;
+
+        font-size: 11px;
+
+        line-height: 1.4;
+    }
+
+    /* ================= RESPONSIVE ================= */
+
+    @media (max-width: 1100px) {
+
+        .main {
+            padding: 25px;
+        }
+
+        .stats {
+            grid-template-columns: 1fr;
+        }
+
+        .two-column {
+            grid-template-columns: 1fr;
+        }
+
+        .learning-grid {
+            grid-template-columns: 1fr;
+        }
+
+        .achievement-grid {
+            grid-template-columns: 1fr;
+        }
+    }
+
+    @media (max-width: 750px) {
+
+        .sidebar {
+
+            position: relative;
+
+            width: 100%;
+
+            height: auto;
+        }
+
+        .main {
+
+            margin-left: 0;
+        }
+
+        .top-section {
+
+            flex-direction: column;
+
+            align-items: flex-start;
+
+            gap: 15px;
+        }
+
+        .language-card {
+
+            flex-direction: column;
+
+            align-items: flex-start;
+
+            gap: 20px;
+        }
+
+        .language-details {
+
+            width: 100%;
+
+            justify-content: space-between;
+        }
+
+        .overall-content {
+
+            flex-direction: column;
+        }
+
+        .recommendation-content {
+
+            flex-direction: column;
+
+            align-items: flex-start;
+        }
+
+        .recommendation-left {
+
+            align-items: flex-start;
+        }
+
+    }
+
+</style>
+```
+
+</head>
+
+<body>
+
+<!-- ==========================================================
+     SIDEBAR
+========================================================== -->
+
+<aside class="sidebar">
+
+```
+<!-- LOGO -->
+
+<div class="logo">
+
+    <div class="logo-icon">
+        🌱
+    </div>
+
+    <div class="logo-text">
+        IntelliLearn
+    </div>
+
+</div>
+
+
+<!-- NAVIGATION -->
+
+<nav class="menu">
+
+    <a href="/dashboard" class="active">
+
+        <span class="menu-icon">
+            🏠
+        </span>
+
+        <span>
+            {{ t('dashboard') }}
+        </span>
+
+    </a>
+
+
+    <a href="/learn">
+
+        <span class="menu-icon">
+            📚
+        </span>
+
+        <span>
+            {{ t('learn') }}
+        </span>
+
+    </a>
+
+
+    <a href="/reading">
+
+        <span class="menu-icon">
+            📖
+        </span>
+
+        <span>
+            {{ t('reading') }}
+        </span>
+
+    </a>
+
+
+    <a href="/writing">
+
+        <span class="menu-icon">
+            ✍️
+        </span>
+
+        <span>
+            {{ t('writing') }}
+        </span>
+
+    </a>
+
+
+    <a href="/voice">
+
+        <span class="menu-icon">
+            🎤
+        </span>
+
+        <span>
+            {{ t('voice') }}
+        </span>
+
+    </a>
+
+
+    <a href="/progress">
+
+        <span class="menu-icon">
+            📊
+        </span>
+
+        <span>
+            {{ t('progress') }}
+        </span>
+
+    </a>
+
+
+    <a href="/profile">
+
+        <span class="menu-icon">
+            👤
+        </span>
+
+        <span>
+            {{ t('profile') }}
+        </span>
+
+    </a>
+
+
+</nav>
+
+
+<!-- LOGOUT -->
+
+<div class="logout">
+
+    <a href="/logout">
+
+        <span class="menu-icon">
+            🚪
+        </span>
+
+        <span>
+            {{ t('logout') }}
+        </span>
+
+    </a>
+
+</div>
+```
+
+</aside>
+
+<!-- ==========================================================
+     MAIN CONTENT
+========================================================== -->
+
+<main class="main">
+
+```
+<!-- ======================================================
+     WELCOME
+======================================================= -->
+
+<section class="top-section">
+
+    <div class="welcome">
+
+        <h1>
+
+            {{ t('welcome_back') }},
+
+            {{ user["name"] }}! 👋
+
+        </h1>
+
+        <p>
+
+            {{ t('ready') }}
+
+        </p>
+
+    </div>
+
+
+    <!-- USER PROFILE -->
+
+    <div class="profile-box">
+
+        <div class="profile-image">
+            👤
+        </div>
+
+        <div class="profile-info">
+
+            <strong>
+                {{ user["name"] }}
+            </strong>
+
+            <small>
+                {{ t('learner') }}
+            </small>
+
+        </div>
+
+    </div>
+
+
+</section>
+
+
+
+<!-- ======================================================
+     LANGUAGE INFORMATION
+======================================================= -->
+
+<section class="language-card">
+
+    <div class="language-text">
+
+        <h2>
+            🌍 {{ t('learning_path') }}
+        </h2>
+
+        <p>
+            {{ t('ready') }}
+        </p>
+
+    </div>
+
+
+    <div class="language-details">
+
+
+        <!-- PREFERRED LANGUAGE -->
+
+        <div class="language-item">
+
+            <span>
+                {{ t('preferred_language') }}
+            </span>
+
+            <strong>
+                {{ preferred_language }}
+            </strong>
+
+        </div>
+
+
+        <!-- LEARNING LANGUAGE -->
+
+        <div class="language-item">
+
+            <span>
+                {{ t('learning_language') }}
+            </span>
+
+            <strong>
+                {{ learning_language }}
+            </strong>
+
+        </div>
+
+
+        <!-- LEVEL -->
+
+        <div class="language-item">
+
+            <span>
+                {{ t('current_level') }}
+            </span>
+
+            <strong>
+                {{ user["level"] }}
+            </strong>
+
+        </div>
+
+
+    </div>
+
+</section>
+
+
+
+<!-- ======================================================
+     STAT CARDS
+======================================================= -->
+
+<section class="stats">
+
+
+    <!-- XP -->
+
+    <div class="stat-card">
+
+        <div class="stat-icon">
+            ⭐
+        </div>
+
+        <div class="stat-content">
+
+            <span>
+                {{ t('total_xp') }}
+            </span>
+
+            <strong>
+                {{ user["xp"] }}
+            </strong>
+
+        </div>
+
+    </div>
+
+
+    <!-- STREAK -->
+
+    <div class="stat-card">
+
+        <div class="stat-icon">
+            🔥
+        </div>
+
+        <div class="stat-content">
+
+            <span>
+                {{ t('day_streak') }}
+            </span>
+
+            <strong>
+                {{ user["streak"] }}
+            </strong>
+
+        </div>
+
+    </div>
+
+
+    <!-- LEVEL -->
+
+    <div class="stat-card">
+
+        <div class="stat-icon">
+            🏆
+        </div>
+
+        <div class="stat-content">
+
+            <span>
+                {{ t('current_level') }}
+            </span>
+
+            <strong>
+                {{ user["level"] }}
+            </strong>
+
+        </div>
+
+    </div>
+
+
+</section>
+
+
+
+<!-- ======================================================
+     GET PROGRESS VALUES FROM DATABASE
+======================================================= -->
+
+{% if progress %}
+
+    {% set reading_progress = progress["reading_progress"] %}
+    {% set writing_progress = progress["writing_progress"] %}
+    {% set speaking_progress = progress["speaking_progress"] %}
+
+{% else %}
+
+    {% set reading_progress = 0 %}
+    {% set writing_progress = 0 %}
+    {% set speaking_progress = 0 %}
+
+{% endif %}
+
+
+{% set overall_progress = (
+    (reading_progress + writing_progress + speaking_progress) / 3
+) | round(0) | int %}
+
+
+
+<!-- ======================================================
+     PROGRESS + DAILY GOAL
+======================================================= -->
+
+<section class="two-column">
+
+
+    <!-- LITERACY PROGRESS -->
+
+    <div class="card">
+
+        <div class="card-header">
+
+            <h2>
+                {{ t('learning_progress') }}
+            </h2>
+
+            <span>
+                {{ t('keep_going') }}
+            </span>
+
+        </div>
+
+
+        <div class="overall-content">
+
+
+            <!-- CIRCLE -->
+
+            <div
+                class="progress-circle"
+                style="--progress: {{ overall_progress }};"
+            >
+
+                <div class="circle-inner">
+
+                    <strong>
+                        {{ overall_progress }}%
+                    </strong>
+
+                    <span>
+                        {{ t('overall_progress') }}
+                    </span>
+
+                </div>
+
+            </div>
+
+
+            <!-- SKILL PROGRESS -->
+
+            <div class="progress-list">
+
+
+                <!-- READING -->
+
+                <div class="progress-row">
+
+                    <div class="progress-label">
+
+                        <span>
+                            📖 {{ t('reading') }}
+                        </span>
+
+                        <strong>
+                            {{ reading_progress }}%
+                        </strong>
+
+                    </div>
+
+                    <div class="progress-bar">
+
+                        <div
+                            class="progress-fill"
+                            style="width: {{ reading_progress }}%;"
+                        ></div>
+
+                    </div>
+
+                </div>
+
+
+                <!-- WRITING -->
+
+                <div class="progress-row">
+
+                    <div class="progress-label">
+
+                        <span>
+                            ✍️ {{ t('writing') }}
+                        </span>
+
+                        <strong>
+                            {{ writing_progress }}%
+                        </strong>
+
+                    </div>
+
+                    <div class="progress-bar">
+
+                        <div
+                            class="progress-fill"
+                            style="width: {{ writing_progress }}%;"
+                        ></div>
+
+                    </div>
+
+                </div>
+
+
+                <!-- SPEAKING -->
+
+                <div class="progress-row">
+
+                    <div class="progress-label">
+
+                        <span>
+                            🎤 {{ t('speaking') }}
+                        </span>
+
+                        <strong>
+                            {{ speaking_progress }}%
+                        </strong>
+
+                    </div>
+
+                    <div class="progress-bar">
+
+                        <div
+                            class="progress-fill"
+                            style="width: {{ speaking_progress }}%;"
+                        ></div>
+
+                    </div>
+
+                </div>
+
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+
+    <!-- ==================================================
+         DAILY GOAL
+    =================================================== -->
+
+    <div class="card goal-card">
+
+        <div class="card-header">
+
+            <h2>
+                {{ t('daily_challenge') }}
+            </h2>
+
+        </div>
+
+
+        <div class="goal-icon">
+            🎯
+        </div>
+
+
+        <div class="goal-number">
+            10 XP
+        </div>
+
+
+        <div class="goal-label">
+
+            {{ t('daily_challenge_description') }}
+
+        </div>
+
+
+        <div class="goal-bar">
+
+            <div class="goal-fill"></div>
+
+        </div>
+
+
+        <a
+            href="/learn"
+            class="goal-button"
+        >
+
+            {{ t('continue_learning') }} →
+
+        </a>
+
+
+    </div>
+
+
+</section>
+
+
+
+<!-- ======================================================
+     ADAPTIVE LEARNING RECOMMENDATION
+======================================================= -->
+
+<section class="card recommendation">
+
+
+    <div class="card-header">
+
+
+        <h2>
+            🤖 {{ t('learning_path') }}
+        </h2>
+
+
+        <div class="ai-badge">
+
+            🧠 {{ t('personalized') }}
+
+        </div>
+
+
+    </div>
+
+
+
+    {% if adaptive_recommendation %}
+
+
+        <div class="recommendation-content">
+
+
+            <div class="recommendation-left">
+
+
+                <!-- RECOMMENDATION ICON -->
+
+                <div class="recommendation-icon">
+
+                    {{ adaptive_recommendation["lesson_icon"] }}
+
+                </div>
+
+
+
+                <!-- RECOMMENDATION INFORMATION -->
+
+                <div class="recommendation-text">
+
+
+                    <h3>
+
+                        {{ adaptive_recommendation["lesson_title"] }}
+
+                    </h3>
+
+
+                    <p>
+
+                        {{ adaptive_recommendation["lesson_description"] }}
+
+                    </p>
+
+
+                    <p style="margin-top: 8px;">
+
+                        💡 {{ adaptive_recommendation["reason"] }}
+
+                    </p>
+
+
+                    <span class="skill-tag">
+
+                        {{ adaptive_recommendation["skill"] }}
+
+                    </span>
+
+
+                    <span class="score-tag">
+
+                        {{ adaptive_recommendation["score"] }}%
+
+                        -
+
+                        {{ adaptive_recommendation["proficiency_level"] }}
+
+                    </span>
+
+
+                </div>
+
+
+            </div>
+
+
+
+            <!-- START RECOMMENDED LESSON -->
+
+            <a
+                href="{{ url_for('lesson', lesson_name=adaptive_recommendation['lesson_name']) }}"
+                class="start-button"
+            >
+
+                {{ t('start') }} →
+
+            </a>
+
+
+        </div>
+
+
+    {% else %}
+
+
+        <div class="recommendation-content">
+
+
+            <div class="recommendation-left">
+
+
+                <div class="recommendation-icon">
+                    📚
+                </div>
+
+
+                <div class="recommendation-text">
+
+                    <h3>
+                        {{ t('start_learning') }}
+                    </h3>
+
+                    <p>
+                        {{ t('complete_lessons') }}
+                    </p>
+
+                </div>
+
+
+            </div>
+
+
+            <a
+                href="/learn"
+                class="start-button"
+            >
+
+                {{ t('start_learning') }} →
+
+            </a>
+
+
+        </div>
+
+
+    {% endif %}
+
+
+</section>
+
+<!-- ======================================================
+     CONTENT RECOMMENDATION ENGINE
+======================================================= -->
+
+<section class="card content-recommendation-card">
+
+    <div class="card-header">
+
+        <h2>
+            🎯 Recommended Learning Content
+        </h2>
+
+        <div class="ai-badge">
+
+            🧠 Personalized
+
+        </div>
+
+    </div>
+
+
+    {% if content_recommendations %}
+
+        <div class="content-recommendation-list">
+
+            {% for recommendation in content_recommendations %}
+
+                <div class="content-recommendation-item">
+
+
+                    <div class="content-left">
+
+
+                        <!-- CONTENT ICON -->
+
+                        <div class="content-icon">
+
+                            {{ recommendation["lesson_icon"] }}
+
+                        </div>
+
+
+                        <!-- CONTENT INFORMATION -->
+
+                        <div class="content-info">
+
+                            <h3>
+
+                                {{ recommendation["lesson_title"] }}
+
+                            </h3>
+
+
+                            <p>
+
+                                {{ recommendation["lesson_description"] }}
+
+                            </p>
+
+
+                            <div>
+
+                                <span class="content-score">
+
+                                    {{ recommendation["score"] }}%
+
+                                    -
+
+                                    {{ recommendation["proficiency_level"] }}
+
+                                </span>
+
+                            </div>
+
+
+                            <div class="recommendation-reason">
+
+                                💡 {{ recommendation["reason"] }}
+
+                            </div>
+
+                        </div>
+
+
+                    </div>
+
+
+                    <!-- START / REVIEW BUTTON -->
+
+                    <a
+                        href="{{ url_for(
+                            'lesson',
+                            lesson_name=recommendation['lesson_name']
+                        ) }}"
+                        class="content-button"
+                    >
+
+                        {% if recommendation["completed"] %}
+
+                            Review →
+
+                        {% else %}
+
+                            Start →
+
+                        {% endif %}
+
+                    </a>
+
+
+                </div>
+
+            {% endfor %}
+
+        </div>
+
+
+    {% else %}
+
+        <div class="recommendation-content">
+
+            <div class="recommendation-left">
+
+                <div class="recommendation-icon">
+
+                    📚
+
+                </div>
+
+
+                <div class="recommendation-text">
+
+                    <h3>
+
+                        Start Learning
+
+                    </h3>
+
+                    <p>
+
+                        Complete a lesson to receive personalized
+                        content recommendations.
+
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <a
+                href="/learn"
+                class="start-button"
+            >
+
+                Start Learning →
+
+            </a>
+
+        </div>
+
+    {% endif %}
+
+</section>
+<!-- ======================================================
+     LEVEL BASED LEARNING PATH
+======================================================= -->
+
+<section class="card learning-path-card">
+
+    <div class="card-header">
+
+       <h2>🗺️ {{ learning_path_text["title"] }}</h2>
+
+        <div class="ai-badge">
+    🧠 {{ learning_path_text["personalized"] }}
+</div>
+
+    </div>
+
+
+    <div class="learning-path">
+
+        {% for level in learning_path_levels %}
+
+            <div class="learning-level
+                {% if level['status'] == 'completed' %}
+                    level-completed
+                {% elif level['status'] == 'current' %}
+                    level-current
+                {% else %}
+                    level-locked
+                {% endif %}
+            ">
+
+                <div class="level-number">
+
+                    {% if level['status'] == 'completed' %}
+
+                        ✓
+
+                    {% elif level['status'] == 'locked' %}
+
+                        🔒
+
+                    {% else %}
+
+                        {{ level['level'] }}
+
+                    {% endif %}
+
+                </div>
+
+
+                <div class="level-icon">
+
+                    {{ level['icon'] }}
+
+                </div>
+
+
+                <div class="level-info">
+
+                    <span class="level-label">
+    {{ learning_path_text["level"] }} {{ level['level'] }}
+</span>
+
+                    <h3>
+                        {{ level['title'] }}
+                    </h3>
+
+
+                    {% if level['status'] == 'completed' %}
+
+                        <p>
+                            ✅ Completed · Score:
+                            {{ level['score'] }}%
+                        </p>
+
+                    {% elif level['status'] == 'current' %}
+
+                       <p>
+    🟢 {{ learning_path_text["current"] }}
+</p>
+
+                    {% else %}
+
+                        <p>
+    🔒 {{ learning_path_text["complete_previous"] }}
+</p>
+
+                    {% endif %}
+
+                </div>
+
+
+                {% if level['unlocked'] %}
+
+                    <a
+                        href="{{ url_for(
+                            'lesson',
+                            lesson_name=level['lesson']
+                        ) }}"
+                        class="level-button"
+                    >
+
+                        {% if level['status'] == 'completed' %}
+
+                            Review →
+
+                        {% else %}
+
+                            Start →
+
+                        {% endif %}
+
+                    </a>
+
+                {% else %}
+
+                    <span class="locked-button">
+                        🔒 Locked
+                    </span>
+
+                {% endif %}
+
+            </div>
+
+
+            {% if not loop.last %}
+
+                <div class="path-connector"></div>
+
+            {% endif %}
+
+        {% endfor %}
+
+    </div>
+
+</section>
+
+
+
+<!-- ======================================================
+     LEARNING AREAS
+======================================================= -->
+
+<section class="card learning-card">
+
+
+    <div class="card-header">
+
+        <h2>
+            {{ t('learning_path') }}
+        </h2>
+
+        <span>
+            {{ t('keep_going') }}
+        </span>
+
+    </div>
+
+
+
+    <div class="learning-grid">
+
+
+        <!-- READING -->
+
+        <a
+            href="/reading"
+            class="learning-item"
+        >
+
+            <div class="learning-icon">
+                📖
+            </div>
+
+            <h3>
+                {{ t('reading') }}
+            </h3>
+
+            <p>
+                {{ t('alphabet_description') }}
+            </p>
+
+            <div class="mini-progress">
+
+                <div
+                    class="mini-fill"
+                    style="width: {{ reading_progress }}%;"
+                ></div>
+
+            </div>
+
+        </a>
+
+
+
+        <!-- WRITING -->
+
+        <a
+            href="/writing"
+            class="learning-item"
+        >
+
+            <div class="learning-icon">
+                ✍️
+            </div>
+
+            <h3>
+                {{ t('writing') }}
+            </h3>
+
+            <p>
+                {{ t('simple_sentences_description') }}
+            </p>
+
+            <div class="mini-progress">
+
+                <div
+                    class="mini-fill"
+                    style="width: {{ writing_progress }}%;"
+                ></div>
+
+            </div>
+
+        </a>
+
+
+
+        <!-- SPEAKING -->
+
+        <a
+            href="/voice"
+            class="learning-item"
+        >
+
+            <div class="learning-icon">
+                🎤
+            </div>
+
+            <h3>
+                {{ t('speaking') }}
+            </h3>
+
+            <p>
+                {{ t('voice_instruction') }}
+            </p>
+
+            <div class="mini-progress">
+
+                <div
+                    class="mini-fill"
+                    style="width: {{ speaking_progress }}%;"
+                ></div>
+
+            </div>
+
+        </a>
+
+
+    </div>
+
+</section>
+
+
+
+<!-- ======================================================
+     ACHIEVEMENTS
+======================================================= -->
+
+<section class="card achievement-card">
+
+
+    <div class="card-header">
+
+        <h2>
+            🏅 {{ t('progress_title') }}
+        </h2>
+
+        <span>
+            {{ t('completed') }}
+        </span>
+
+    </div>
+
+
+    <div class="achievement-grid">
+
+
+        <!-- GETTING STARTED -->
+
+        <div class="achievement">
+
+            <div class="achievement-icon">
+                🌱
+            </div>
+
+            <h3>
+                {{ t('beginner') }}
+            </h3>
+
+            <p>
+                {{ t('start_learning') }}
+            </p>
+
+        </div>
+
+
+
+        <!-- READING -->
+
+        <div class="achievement">
+
+            <div class="achievement-icon">
+                📖
+            </div>
+
+            <h3>
+                {{ t('reading') }}
+            </h3>
+
+            <p>
+
+                {{ reading_progress }}%
+
+                {{ t('completed') }}
+
+            </p>
+
+        </div>
+
+
+
+        <!-- SPEAKING -->
+
+        <div class="achievement">
+
+            <div class="achievement-icon">
+                🎤
+            </div>
+
+            <h3>
+                {{ t('speaking') }}
+            </h3>
+
+            <p>
+
+                {{ speaking_progress }}%
+
+                {{ t('completed') }}
+
+            </p>
+
+        </div>
+
+
+    </div>
+
+
+</section>
+```
+
+</main>
+
+</body>
+
+</html>

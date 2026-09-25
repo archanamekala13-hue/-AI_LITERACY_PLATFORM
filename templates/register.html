@@ -1,0 +1,337 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>Create Account - IntelliLearn</title>
+
+    <!-- IMPORTANT: Connect Flask to CSS -->
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='style.css') }}">
+
+</head>
+
+
+<body class="register-page">
+
+
+    <!-- ==============================
+         NAVIGATION BAR
+         ============================== -->
+
+    <nav class="navbar">
+
+        <a href="/" class="logo">
+            🌱 IntelliLearn
+        </a>
+
+
+        <div class="nav-links">
+
+            <a href="/">
+                Home
+            </a>
+
+            <a href="/login">
+                Login
+            </a>
+
+        </div>
+
+    </nav>
+
+
+
+    <!-- ==============================
+         REGISTRATION SECTION
+         ============================== -->
+
+    <main class="register-wrapper">
+
+
+        <!-- LEFT SIDE -->
+
+        <section class="register-intro">
+
+           
+
+            <div class="intro-features">
+
+                
+
+            </div>
+
+        </section>
+
+
+
+        <!-- RIGHT SIDE - FORM -->
+
+        <section class="register-card">
+
+
+            <div class="register-card-header">
+
+                <div class="register-icon">
+                    🌱
+                </div>
+
+                <h2>
+                    Create Your Account
+                </h2>
+
+                <p>
+                    Start your personalized learning journey
+                </p>
+
+            </div>
+
+
+
+            <!-- ==============================
+                 REGISTRATION FORM
+                 ============================== -->
+
+            <form
+                action="/register"
+                method="POST"
+                class="register-form">
+
+
+                <!-- FULL NAME -->
+
+                <div class="form-group">
+
+                    <label for="name">
+                        👤 Full Name
+                    </label>
+
+                    <input
+                        type="text"
+                        id="name"
+                        name="name"
+                        placeholder="Enter your full name"
+                        required>
+
+                </div>
+
+
+
+                <!-- EMAIL -->
+
+                <div class="form-group">
+
+                    <label for="email">
+                        📧 Email Address
+                    </label>
+
+                    <input
+                        type="email"
+                        id="email"
+                        name="email"
+                        placeholder="Enter your email"
+                        required>
+
+                </div>
+
+
+
+                <!-- PASSWORD -->
+
+                <div class="form-group">
+
+                    <label for="password">
+                        🔐 Password
+                    </label>
+
+                    <input
+                        type="password"
+                        id="password"
+                        name="password"
+                        placeholder="Create a password"
+                        required>
+
+                </div>
+
+
+
+                <!-- PREFERRED LANGUAGE -->
+
+                <div class="form-group">
+
+                    <label for="preferred_language">
+                        🌐 Preferred Language
+                    </label>
+
+                    <small class="field-help">
+                        The language you are most comfortable with
+                    </small>
+
+
+                    <select
+    id="preferred_language"
+    name="preferred_language"
+    required>
+
+    <option value="">
+        Select your preferred language
+    </option>
+
+    <option value="English">
+        English
+    </option>
+
+    <option value="Telugu">
+        తెలుగు — Telugu
+    </option>
+
+    <option value="Hindi">
+        हिन्दी — Hindi
+    </option>
+
+</select>
+
+
+                    
+
+                </div>
+
+
+
+                <!-- LEARNING LANGUAGE -->
+
+                <div class="form-group">
+
+                    <label for="learning_language">
+                        🎯 Learning Language
+                    </label>
+
+                    <small class="field-help">
+                        The language you want to learn
+                    </small>
+
+
+                    <select
+                        id="learning_language"
+                        name="learning_language"
+                        required>
+
+                        <option value="">
+                            Select a language to learn
+                        </option>
+
+                        <option value="English">
+                            English
+                        </option>
+
+                        <option value="Telugu">
+                            తెలుగు — Telugu
+                        </option>
+
+                        <option value="Hindi">
+                            हिन्दी — Hindi
+                        </option>
+
+                        <option value="Tamil">
+                            தமிழ் — Tamil
+                        </option>
+
+                        <option value="Kannada">
+                            ಕನ್ನಡ — Kannada
+                        </option>
+
+                        <option value="Malayalam">
+                            മലയാളം — Malayalam
+                        </option>
+
+                    </select>
+
+                </div>
+
+
+
+                <!-- LANGUAGE PREVIEW -->
+
+                <div class="language-preview">
+
+                    <div class="preview-icon">
+                        💬
+                    </div>
+
+                    <div>
+
+                        <strong>
+                            Your learning journey
+                        </strong>
+
+                        <p>
+                            Learn your chosen language using
+                            your preferred language.
+                        </p>
+
+                    </div>
+
+                </div>
+
+
+
+                <!-- REGISTER BUTTON -->
+
+                <button
+                    type="submit"
+                    class="register-submit">
+
+                    CREATE MY ACCOUNT
+                    <span>→</span>
+
+                </button>
+
+
+            </form>
+
+
+
+            <!-- LOGIN LINK -->
+
+            <div class="login-link">
+
+                Already have an account?
+
+                <a href="/login">
+                    Log in
+                </a>
+
+            </div>
+
+
+        </section>
+
+    </main>
+
+
+
+    <!-- ==============================
+         FOOTER
+         ============================== -->
+
+    <footer class="footer">
+
+        <p>
+            🌱 IntelliLearn
+        </p>
+
+        <span>
+            Learn • Practice • Improve
+        </span>
+
+    </footer>
+
+
+</body>
+
+</html>

@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>Personalized Lesson</title>
+
+    <style>
+
+        body {
+            font-family: Arial, sans-serif;
+            background: #f5f7fb;
+            margin: 0;
+            padding: 40px;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: auto;
+        }
+
+        .card {
+            background: white;
+            padding: 30px;
+            margin-bottom: 20px;
+            border-radius: 15px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+        }
+
+        .icon {
+            font-size: 50px;
+        }
+
+        .level {
+            display: inline-block;
+            padding: 8px 15px;
+            border-radius: 20px;
+            background: #eef2ff;
+            margin-top: 10px;
+        }
+
+        .question {
+            padding: 20px;
+            margin: 15px 0;
+            border-radius: 10px;
+            background: #f8f9fa;
+        }
+
+        .back {
+            display: inline-block;
+            padding: 12px 20px;
+            background: #333;
+            color: white;
+            text-decoration: none;
+            border-radius: 8px;
+        }
+
+    </style>
+
+</head>
+
+<body>
+
+<div class="container">
+
+    <div class="card">
+
+        <div class="icon">
+            {{ personalized_lesson.lesson_icon }}
+        </div>
+
+        <h1>
+            {{ personalized_lesson.lesson_title }}
+        </h1>
+
+        <p>
+            {{ personalized_lesson.lesson_description }}
+        </p>
+
+        <p>
+            <strong>Skill:</strong>
+            {{ personalized_lesson.skill }}
+        </p>
+
+        <p>
+            <strong>Your Level:</strong>
+
+            <span class="level">
+                {{ personalized_lesson.learner_level }}
+            </span>
+        </p>
+
+        <p>
+            <strong>Proficiency Score:</strong>
+            {{ personalized_lesson.proficiency_score }}%
+        </p>
+
+        <p>
+            {{ personalized_lesson.reason }}
+        </p>
+
+    </div>
+
+
+    <div class="card">
+
+        <h2>
+            Personalized Practice
+        </h2>
+
+        <p>
+            Questions selected for your current learning level:
+        </p>
+
+
+        {% for question in personalized_lesson.questions %}
+
+        <div class="question">
+
+            <strong>
+                Question {{ loop.index }}
+            </strong>
+
+            <p>
+                {{ question.question }}
+            </p>
+
+            <ul>
+
+                {% for option in question.options %}
+
+                <li>
+                    {{ option }}
+                </li>
+
+                {% endfor %}
+
+            </ul>
+
+        </div>
+
+        {% endfor %}
+
+    </div>
+
+
+    <a href="/dashboard" class="back">
+        Back to Dashboard
+    </a>
+
+</div>
+
+</body>
+
+</html>

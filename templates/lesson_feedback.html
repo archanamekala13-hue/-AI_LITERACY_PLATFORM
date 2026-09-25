@@ -1,0 +1,390 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>Lesson Feedback</title>
+
+    <style>
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, Helvetica, sans-serif;
+            min-height: 100vh;
+
+            background:
+                linear-gradient(
+                    135deg,
+                    #eef2ff,
+                    #f8fafc,
+                    #ecfeff
+                );
+
+            display: flex;
+            justify-content: center;
+            align-items: center;
+
+            padding: 30px;
+        }
+
+        .feedback-container {
+            width: 100%;
+            max-width: 650px;
+
+            background: white;
+
+            border-radius: 25px;
+
+            padding: 45px 40px;
+
+            text-align: center;
+
+            box-shadow:
+                0 15px 45px rgba(0, 0, 0, 0.12);
+
+            animation: appear 0.5s ease;
+        }
+
+        @keyframes appear {
+
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+
+        }
+
+        .result-icon {
+            width: 90px;
+            height: 90px;
+
+            margin: 0 auto 20px;
+
+            border-radius: 50%;
+
+            display: flex;
+            justify-content: center;
+            align-items: center;
+
+            font-size: 48px;
+
+            background: #dcfce7;
+        }
+
+        .result-title {
+            font-size: 34px;
+            font-weight: 700;
+
+            color: #1f2937;
+
+            margin-bottom: 12px;
+        }
+
+        .xp-box {
+            display: inline-block;
+
+            padding: 10px 22px;
+
+            border-radius: 30px;
+
+            background: #fef3c7;
+
+            color: #92400e;
+
+            font-size: 18px;
+
+            font-weight: 700;
+
+            margin-bottom: 25px;
+        }
+
+        .score-card {
+            background: #f8fafc;
+
+            border-radius: 18px;
+
+            padding: 22px;
+
+            margin: 20px 0;
+        }
+
+        .score-label {
+            color: #64748b;
+
+            font-size: 15px;
+
+            margin-bottom: 7px;
+        }
+
+        .score {
+            font-size: 32px;
+
+            font-weight: 700;
+
+            color: #2563eb;
+        }
+
+        .explanation-box {
+            text-align: left;
+
+            background: #eff6ff;
+
+            border-left: 5px solid #3b82f6;
+
+            border-radius: 12px;
+
+            padding: 20px;
+
+            margin-top: 25px;
+
+            margin-bottom: 30px;
+        }
+
+        .explanation-title {
+            font-size: 18px;
+
+            font-weight: 700;
+
+            color: #1e3a8a;
+
+            margin-bottom: 8px;
+        }
+
+        .explanation-text {
+            font-size: 16px;
+
+            line-height: 1.6;
+
+            color: #334155;
+        }
+
+        .button-row {
+            display: flex;
+
+            justify-content: center;
+
+            gap: 15px;
+
+            flex-wrap: wrap;
+        }
+
+        .next-button {
+            display: inline-block;
+
+            text-decoration: none;
+
+            background: #2563eb;
+
+            color: white;
+
+            padding: 14px 30px;
+
+            border-radius: 12px;
+
+            font-size: 17px;
+
+            font-weight: 700;
+
+            transition: 0.2s;
+        }
+
+        .next-button:hover {
+            background: #1d4ed8;
+
+            transform: translateY(-2px);
+
+            box-shadow:
+                0 8px 20px rgba(37, 99, 235, 0.25);
+        }
+
+        .learn-button {
+            display: inline-block;
+
+            text-decoration: none;
+
+            background: #f1f5f9;
+
+            color: #334155;
+
+            padding: 14px 25px;
+
+            border-radius: 12px;
+
+            font-size: 16px;
+
+            font-weight: 600;
+
+            transition: 0.2s;
+        }
+
+        .learn-button:hover {
+            background: #e2e8f0;
+        }
+
+        .lesson-name {
+            margin-top: 25px;
+
+            color: #94a3b8;
+
+            font-size: 14px;
+        }
+
+        @media (max-width: 600px) {
+
+            body {
+                padding: 15px;
+            }
+
+            .feedback-container {
+                padding: 35px 20px;
+            }
+
+            .result-title {
+                font-size: 28px;
+            }
+
+            .score {
+                font-size: 28px;
+            }
+
+            .button-row {
+                flex-direction: column;
+            }
+
+            .next-button,
+            .learn-button {
+                width: 100%;
+            }
+
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+    <div class="feedback-container">
+
+        <!-- RESULT ICON -->
+
+        <div class="result-icon">
+
+            {% if is_correct %}
+                🎉
+            {% else %}
+                💡
+            {% endif %}
+
+        </div>
+
+
+        <!-- RESULT TITLE -->
+
+        <div class="result-title">
+
+            {% if is_correct %}
+                Correct!
+            {% else %}
+                Keep Learning!
+            {% endif %}
+
+        </div>
+
+
+        <!-- XP -->
+
+        <div class="xp-box">
+
+            {% if xp_earned > 0 %}
+                +{{ xp_earned }} XP
+            {% else %}
+                +0 XP
+            {% endif %}
+
+        </div>
+
+
+        <!-- SCORE -->
+
+        <div class="score-card">
+
+            <div class="score-label">
+                Current Lesson Score
+            </div>
+
+            <div class="score">
+
+                {{ score }} / {{ total_questions }}
+
+            </div>
+
+        </div>
+
+
+        <!-- EXPLANATION -->
+
+        <div class="explanation-box">
+
+            <div class="explanation-title">
+                📖 Explanation
+            </div>
+
+            <div class="explanation-text">
+
+                {{ explanation }}
+
+            </div>
+
+        </div>
+
+
+        <!-- BUTTONS -->
+
+        <div class="button-row">
+
+            <a
+                href="{{ url_for('lesson', lesson_name=lesson_name) }}"
+                class="next-button"
+            >
+                Next Question →
+            </a>
+
+            <a
+                href="{{ url_for('learn') }}"
+                class="learn-button"
+            >
+                ← Back to Lessons
+            </a>
+
+        </div>
+
+
+        <!-- LESSON NAME -->
+
+        <div class="lesson-name">
+
+            Lesson: {{ lesson_title }}
+
+        </div>
+
+    </div>
+
+</body>
+
+</html>

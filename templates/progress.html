@@ -1,0 +1,1276 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>{{ t("my_progress") }} - IntelliLearn</title>
+
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='style.css') }}">
+
+
+<style>
+
+body.progress-page{
+    margin:0;
+    min-height:100vh;
+}
+
+.progress-layout{
+    display:flex;
+    min-height:100vh;
+}
+
+.progress-sidebar{
+    width:245px;
+    flex-shrink:0;
+    background:#fff;
+    border-right:1px solid #e5e7eb;
+    padding:24px 14px;
+    box-sizing:border-box;
+    position:fixed;
+    top:0;
+    bottom:0;
+    left:0;
+    z-index:100;
+}
+
+.progress-sidebar-logo{
+    font-size:22px;
+    font-weight:800;
+    margin:4px 10px 28px;
+}
+
+.progress-sidebar-logo span{
+    color:#22c55e;
+}
+
+.progress-sidebar-nav{
+    display:flex;
+    flex-direction:column;
+    gap:7px;
+}
+
+.progress-sidebar-nav a{
+    display:flex;
+    align-items:center;
+    gap:12px;
+    padding:12px 14px;
+    border-radius:10px;
+    text-decoration:none;
+    color:#4b5563;
+    font-weight:600;
+    transition:.2s;
+}
+
+.progress-sidebar-nav a:hover{
+    background:#f0fdf4;
+    color:#16a34a;
+}
+
+.progress-sidebar-nav a.active{
+    background:#dcfce7;
+    color:#15803d;
+}
+
+.progress-main{
+    margin-left:245px;
+    width:calc(100% - 245px);
+    min-height:100vh;
+}
+
+.progress-topbar{
+    height:76px;
+    padding:0 32px;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    background:#fff;
+    border-bottom:1px solid #e5e7eb;
+    box-sizing:border-box;
+}
+
+.progress-welcome h2{
+    margin:0;
+    font-size:21px;
+}
+
+.progress-welcome p{
+    margin:4px 0 0;
+    color:#6b7280;
+    font-size:13px;
+}
+
+.progress-user-info{
+    display:flex;
+    align-items:center;
+    gap:12px;
+}
+
+.progress-language-chip{
+    padding:8px 12px;
+    border-radius:20px;
+    background:#f0fdf4;
+    color:#15803d;
+    font-size:13px;
+    font-weight:700;
+}
+
+.progress-user-avatar{
+    width:38px;
+    height:38px;
+    border-radius:50%;
+    background:#dcfce7;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-weight:800;
+    color:#15803d;
+}
+
+.progress-main>.progress-wrapper{
+    min-height:calc(100vh - 76px);
+    box-sizing:border-box;
+}
+
+
+/* =========================================================
+   STEP 4 - ACHIEVEMENT STYLES
+   ========================================================= */
+
+.achievement-grid{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(150px,1fr));
+    gap:14px;
+}
+
+.achievement{
+    padding:18px 14px;
+    border-radius:14px;
+    background:#f9fafb;
+    border:1px solid #e5e7eb;
+    text-align:center;
+    transition:.2s ease;
+}
+
+.achievement:hover{
+    transform:translateY(-2px);
+    box-shadow:0 5px 15px rgba(0,0,0,.06);
+}
+
+.achievement-earned{
+    background:#f0fdf4;
+    border:1px solid #86efac;
+}
+
+.achievement-icon{
+    width:52px;
+    height:52px;
+    margin:0 auto 10px;
+    border-radius:50%;
+    background:#dcfce7;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-size:26px;
+}
+
+.achievement-earned .achievement-icon{
+    background:#bbf7d0;
+}
+
+.achievement strong{
+    display:block;
+    font-size:15px;
+    color:#1f2937;
+    margin-bottom:6px;
+}
+
+.achievement small{
+    display:block;
+    color:#6b7280;
+    font-size:12px;
+    line-height:1.5;
+}
+
+.achievement-earned-badge{
+    display:inline-block;
+    margin-top:9px;
+    padding:4px 9px;
+    border-radius:12px;
+    background:#22c55e;
+    color:white;
+    font-size:11px;
+    font-weight:700;
+}
+
+.no-achievements{
+    grid-column:1/-1;
+    text-align:center;
+    padding:28px 15px;
+    border-radius:14px;
+    background:#f9fafb;
+    border:1px dashed #d1d5db;
+    color:#6b7280;
+}
+
+.no-achievements-icon{
+    font-size:34px;
+    margin-bottom:8px;
+}
+
+.no-achievements strong{
+    display:block;
+    color:#374151;
+    margin-bottom:5px;
+}
+
+.no-achievements p{
+    margin:0;
+    font-size:13px;
+}
+
+
+/* =========================================================
+   RESPONSIVE
+   ========================================================= */
+
+@media(max-width:850px){
+
+    .progress-sidebar{
+        width:76px;
+        padding:18px 8px;
+    }
+
+    .progress-sidebar-logo{
+        font-size:0;
+        text-align:center;
+        margin:5px 0 24px;
+    }
+
+    .progress-sidebar-logo::before{
+        content:'🌱';
+        font-size:25px;
+    }
+
+    .progress-sidebar-nav a{
+        justify-content:center;
+        padding:12px 8px;
+        font-size:0;
+    }
+
+    .progress-main{
+        margin-left:76px;
+        width:calc(100% - 76px);
+    }
+
+    .progress-topbar{
+        padding:0 18px;
+    }
+
+    .progress-language-chip{
+        display:none;
+    }
+
+    /* =========================================================
+       STEP 4 - EARNED + LOCKED ACHIEVEMENTS
+       ========================================================= */
+
+    .achievement-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+        gap: 14px;
+    }
+
+    .achievement {
+        padding: 18px 14px;
+        border-radius: 14px;
+        background: #f9fafb;
+        border: 1px solid #e5e7eb;
+        text-align: center;
+        transition: 0.2s ease;
+    }
+
+    .achievement:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 5px 15px rgba(0,0,0,0.06);
+    }
+
+    /* -------------------------
+       EARNED ACHIEVEMENT
+       ------------------------- */
+
+    .achievement-earned {
+        background: #f0fdf4;
+        border: 1px solid #86efac;
+    }
+
+    .achievement-earned .achievement-icon {
+        background: #bbf7d0;
+    }
+
+    .achievement-icon {
+        width: 52px;
+        height: 52px;
+        margin: 0 auto 10px;
+        border-radius: 50%;
+        background: #dcfce7;
+
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+        font-size: 26px;
+    }
+
+    .achievement strong {
+        display: block;
+        font-size: 15px;
+        color: #1f2937;
+        margin-bottom: 6px;
+    }
+
+    .achievement small {
+        display: block;
+        color: #6b7280;
+        font-size: 12px;
+        line-height: 1.5;
+    }
+
+    .achievement-earned-badge {
+        display: inline-block;
+        margin-top: 9px;
+        padding: 4px 9px;
+        border-radius: 12px;
+
+        background: #22c55e;
+        color: white;
+
+        font-size: 11px;
+        font-weight: 700;
+    }
+
+
+    /* -------------------------
+       LOCKED ACHIEVEMENT
+       ------------------------- */
+
+    .achievement-locked {
+        background: #f9fafb;
+        border: 1px solid #e5e7eb;
+        opacity: 0.75;
+    }
+
+    .achievement-locked .achievement-icon {
+        background: #e5e7eb;
+        filter: grayscale(1);
+    }
+
+    .achievement-locked strong {
+        color: #6b7280;
+    }
+
+    .achievement-locked small {
+        color: #9ca3af;
+    }
+
+    .achievement-locked-badge {
+        display: inline-block;
+        margin-top: 9px;
+        padding: 4px 9px;
+
+        border-radius: 12px;
+
+        background: #d1d5db;
+        color: #4b5563;
+
+        font-size: 11px;
+        font-weight: 700;
+    }
+
+
+    /* -------------------------
+       NO ACHIEVEMENTS
+       ------------------------- */
+
+    .no-achievements {
+        grid-column: 1 / -1;
+        text-align: center;
+        padding: 28px 15px;
+
+        border-radius: 14px;
+        background: #f9fafb;
+        border: 1px dashed #d1d5db;
+
+        color: #6b7280;
+    }
+
+    .no-achievements-icon {
+        font-size: 34px;
+        margin-bottom: 8px;
+    }
+
+    .no-achievements strong {
+        display: block;
+        color: #374151;
+        margin-bottom: 5px;
+    }
+
+    .no-achievements p {
+        margin: 0;
+        font-size: 13px;
+    }
+
+}
+
+</style>
+
+</head>
+
+
+<body class="progress-page">
+
+
+<!-- =====================================================
+     NAVBAR
+     ===================================================== -->
+
+<div class="progress-layout">
+
+<aside class="progress-sidebar">
+
+<div class="progress-sidebar-logo">
+    🌱 Intelli<span>Learn</span>
+</div>
+
+<nav class="progress-sidebar-nav">
+
+<a href="/dashboard">
+    🏠 <span>{{ t("dashboard") }}</span>
+</a>
+
+<a href="/learn">
+    📚 <span>{{ t("learn") }}</span>
+</a>
+
+<a href="/reading">
+    📖 <span>{{ t("reading") }}</span>
+</a>
+
+<a href="/writing">
+    ✍️ <span>{{ t("writing") }}</span>
+</a>
+
+<a href="/voice">
+    🎤 <span>{{ t("voice") }}</span>
+</a>
+
+<a href="/progress" class="active">
+    📊 <span>{{ t("progress") }}</span>
+</a>
+
+<!-- LEARNING REPORT -->
+<a href="{{ url_for('learning_report') }}">
+    📄 <span>Learning Report</span>
+</a>
+
+<a href="/profile">
+    👤 <span>{{ t("profile") }}</span>
+</a>
+
+<a href="/logout">
+    🚪 <span>{{ t("logout") }}</span>
+</a>
+
+</nav>
+
+</aside>
+
+
+<div class="progress-main">
+
+
+<header class="progress-topbar">
+
+<div class="progress-welcome">
+
+<h2>
+    {{ t("my_progress") }}
+</h2>
+
+<p>
+    {{ t("track_learning_journey") }}
+</p>
+
+</div>
+
+
+<div class="progress-user-info">
+
+<div class="progress-language-chip">
+    🌐 {{ learning_language }}
+</div>
+
+<div class="progress-user-avatar">
+    {{ (user["name"] if user else "U")[0]|upper }}
+</div>
+
+</div>
+
+</header>
+
+
+
+<!-- =====================================================
+     MAIN CONTAINER
+     ===================================================== -->
+
+<div class="progress-wrapper">
+
+
+<!-- =================================================
+     HEADER
+     ================================================= -->
+
+<div class="progress-header">
+
+<div>
+
+<div class="progress-title">
+
+<span class="title-icon">
+    📊
+</span>
+
+<div>
+
+<h1>
+    {{ t("my_progress") }}
+</h1>
+
+<p>
+    {{ t("track_learning_journey") }}
+</p>
+
+</div>
+
+</div>
+
+</div>
+
+
+<div class="welcome-badge">
+
+    👋
+    {{ user["name"] }}
+
+</div>
+
+</div>
+
+
+
+<!-- =================================================
+     STAT CARDS
+     ================================================= -->
+
+<div class="stats-grid">
+
+
+<!-- STREAK -->
+
+<div class="stat-card streak-card">
+
+<div class="stat-icon">
+    🔥
+</div>
+
+<div>
+
+<span>
+    {{ t("day_streak") }}
+</span>
+
+<strong>
+    {{ user["streak"] }}
+</strong>
+
+<small>
+    {{ t("keep_going_short") }}
+</small>
+
+</div>
+
+</div>
+
+
+
+<!-- XP -->
+
+<div class="stat-card xp-card">
+
+<div class="stat-icon">
+    ⭐
+</div>
+
+<div>
+
+<span>
+    {{ t("total_xp") }}
+</span>
+
+<strong>
+    {{ user["xp"] }}
+</strong>
+
+<small>
+    {{ t("xp_earned") }}
+</small>
+
+</div>
+
+</div>
+
+
+
+<!-- LEVEL -->
+
+<div class="stat-card level-card">
+
+<div class="stat-icon">
+    🏆
+</div>
+
+<div>
+
+<span>
+    {{ t("current_level") }}
+</span>
+
+<strong>
+    {{ t("level") }} {{ user["level"] }}
+</strong>
+
+<small>
+    {{ t("keep_learning") }}
+</small>
+
+</div>
+
+</div>
+
+</div>
+
+
+
+<!-- =================================================
+     OVERALL PROGRESS
+     ================================================= -->
+
+<div class="overall-card">
+
+<div class="section-heading">
+
+<h2>
+    {{ t("overall_progress") }}
+</h2>
+
+<span>
+    {{ overall_progress }}%
+</span>
+
+</div>
+
+
+<div class="overall-content">
+
+
+<!-- CIRCLE -->
+
+<div class="progress-circle"
+     style="--progress: {{ overall_progress }}%;">
+
+<div class="circle-inner">
+
+<strong>
+    {{ overall_progress }}%
+</strong>
+
+<span>
+    {{ t("overall") }}
+</span>
+
+</div>
+
+</div>
+
+
+
+<!-- MESSAGE -->
+
+<div class="overall-message">
+
+{% if overall_progress >= 80 %}
+
+<h3>
+    🎉 {{ t("excellent_progress") }}
+</h3>
+
+<p>
+    You are doing an amazing job.
+    Keep learning and complete the remaining lessons.
+</p>
+
+
+{% elif overall_progress >= 50 %}
+
+<h3>
+    🌟 {{ t("great_progress") }}
+</h3>
+
+<p>
+    {{ t("great_progress_desc") }}
+</p>
+
+
+{% elif overall_progress > 0 %}
+
+<h3>
+    🌱 {{ t("good_start") }}
+</h3>
+
+<p>
+    {{ t("good_start_desc") }}
+</p>
+
+
+{% else %}
+
+<h3>
+    🚀 {{ t("start_learning_journey") }}
+</h3>
+
+<p>
+    {{ t("complete_first_lesson") }}
+    to begin building your progress.
+</p>
+
+{% endif %}
+
+</div>
+
+</div>
+
+</div>
+
+
+
+<!-- =================================================
+     SKILLS
+     ================================================= -->
+
+<h2 class="skills-title">
+    {{ t("skills_progress") }}
+</h2>
+
+
+<div class="skills-grid">
+
+
+<!-- =============================================
+     READING
+     ============================================= -->
+
+<div class="skill-card reading-card">
+
+<div class="skill-top">
+
+<div class="skill-icon reading-icon">
+    📖
+</div>
+
+<div class="skill-info">
+
+<h3>
+    {{ t("reading") }}
+</h3>
+
+<p>
+    {{ t("reading_desc") }}
+</p>
+
+</div>
+
+<strong class="skill-percent">
+    {{ progress["reading_progress"] }}%
+</strong>
+
+</div>
+
+
+<div class="skill-progress">
+
+<div class="skill-progress-fill reading-fill"
+     style="width: {{ progress['reading_progress'] }}%;">
+</div>
+
+</div>
+
+
+<div class="skill-status">
+
+{% if progress["reading_progress"] >= 100 %}
+
+<span class="completed-status">
+    ✓ {{ t("completed") }}
+</span>
+
+{% elif progress["reading_progress"] > 0 %}
+
+<span>
+    ◷ {{ t("in_progress") }}
+</span>
+
+{% else %}
+
+<span>
+    ○ {{ t("not_started") }}
+</span>
+
+{% endif %}
+
+<span>
+    {{ progress["reading_progress"] }}%
+    {{ t("complete") }}
+</span>
+
+</div>
+
+
+<div class="skill-message reading-message">
+
+{% if progress["reading_progress"] >= 100 %}
+
+⭐ {{ t("reading_excellent") }}
+
+{% elif progress["reading_progress"] > 0 %}
+
+📚 {{ t("reading_keep") }}
+
+{% else %}
+
+🚀 {{ t("reading_start") }}
+
+{% endif %}
+
+</div>
+
+</div>
+
+
+
+<!-- =============================================
+     WRITING
+     ============================================= -->
+
+<div class="skill-card writing-card">
+
+<div class="skill-top">
+
+<div class="skill-icon writing-icon">
+    ✍️
+</div>
+
+<div class="skill-info">
+
+<h3>
+    {{ t("writing") }}
+</h3>
+
+<p>
+    {{ t("writing_desc") }}
+</p>
+
+</div>
+
+<strong class="skill-percent">
+    {{ progress["writing_progress"] }}%
+</strong>
+
+</div>
+
+
+<div class="skill-progress">
+
+<div class="skill-progress-fill writing-fill"
+     style="width: {{ progress['writing_progress'] }}%;">
+</div>
+
+</div>
+
+
+<div class="skill-status">
+
+{% if progress["writing_progress"] >= 100 %}
+
+<span class="completed-status">
+    ✓ {{ t("completed") }}
+</span>
+
+{% elif progress["writing_progress"] > 0 %}
+
+<span>
+    ◷ {{ t("in_progress") }}
+</span>
+
+{% else %}
+
+<span>
+    ○ {{ t("not_started") }}
+</span>
+
+{% endif %}
+
+<span>
+    {{ progress["writing_progress"] }}%
+    {{ t("complete") }}
+</span>
+
+</div>
+
+
+<div class="skill-message writing-message">
+
+{% if progress["writing_progress"] >= 100 %}
+
+🎉 {{ t("writing_excellent") }}
+
+{% elif progress["writing_progress"] > 0 %}
+
+📈 {{ t("writing_keep") }}
+
+{% else %}
+
+✏️ {{ t("writing_start") }}
+
+{% endif %}
+
+</div>
+
+</div>
+
+
+
+<!-- =============================================
+     SPEAKING
+     ============================================= -->
+
+<div class="skill-card speaking-card">
+
+<div class="skill-top">
+
+<div class="skill-icon speaking-icon">
+    🎤
+</div>
+
+<div class="skill-info">
+
+<h3>
+    {{ t("speaking") }}
+</h3>
+
+<p>
+    {{ t("speaking_desc") }}
+</p>
+
+</div>
+
+<strong class="skill-percent">
+    {{ progress["speaking_progress"] }}%
+</strong>
+
+</div>
+
+
+<div class="skill-progress">
+
+<div class="skill-progress-fill speaking-fill"
+     style="width: {{ progress['speaking_progress'] }}%;">
+</div>
+
+</div>
+
+
+<div class="skill-status">
+
+{% if progress["speaking_progress"] >= 100 %}
+
+<span class="completed-status">
+    ✓ {{ t("completed") }}
+</span>
+
+{% elif progress["speaking_progress"] > 0 %}
+
+<span>
+    ◷ {{ t("in_progress") }}
+</span>
+
+{% else %}
+
+<span>
+    ○ {{ t("not_started") }}
+</span>
+
+{% endif %}
+
+<span>
+    {{ progress["speaking_progress"] }}%
+    {{ t("complete") }}
+</span>
+
+</div>
+
+
+<div class="skill-message speaking-message">
+
+{% if progress["speaking_progress"] >= 100 %}
+
+🎤 {{ t("speaking_excellent") }}
+
+{% elif progress["speaking_progress"] > 0 %}
+
+💡 {{ t("speaking_keep") }}
+
+{% else %}
+
+🎙️ {{ t("speaking_start") }}
+
+{% endif %}
+
+</div>
+
+</div>
+
+</div>
+
+
+
+<!-- =================================================
+     RECENT ACTIVITY
+     ================================================= -->
+
+<div class="bottom-grid">
+
+
+<div class="activity-card">
+
+<div class="card-heading">
+
+<h2>
+    📝 {{ t("recent_activity") }}
+</h2>
+
+</div>
+
+
+{% if lesson_progress %}
+
+{% for lesson in lesson_progress[-5:]|reverse %}
+
+<div class="activity-item">
+
+<div class="activity-check">
+    ✓
+</div>
+
+<div class="activity-info">
+
+<strong>
+    {{ lesson["lesson"].replace("_", " ").title() }}
+</strong>
+
+<small>
+
+{% if lesson["completed"] %}
+
+{{ t("lesson_completed") }}
+
+{% else %}
+
+{{ t("lesson_in_progress") }}
+
+{% endif %}
+
+</small>
+
+</div>
+
+<div class="activity-score">
+
+{{ lesson["best_score"] }}
+/{{ lesson["total_questions"] }}
+
+</div>
+
+</div>
+
+{% endfor %}
+
+
+{% else %}
+
+<div class="empty-activity">
+
+📚
+
+<p>
+    {{ t("no_lessons_completed") }}
+</p>
+
+<a href="/learn">
+    {{ t("start_learning") }} →
+</a>
+
+</div>
+
+{% endif %}
+
+</div>
+
+
+
+<!-- =================================================
+     STEP 4 - ACHIEVEMENTS
+     ================================================= -->
+
+<div class="achievement-card">
+
+<div class="card-heading">
+
+<h2>
+    🏅 {{ t("achievements") }}
+</h2>
+
+</div>
+
+
+<div class="achievement-grid">
+
+
+{% if achievements %}
+
+
+{% for achievement in achievements %}
+
+<div class="achievement achievement-earned">
+
+<div class="achievement-icon">
+
+    {{ achievement["icon"] }}
+
+</div>
+
+
+<strong>
+
+    {{ achievement["title"] }}
+
+</strong>
+
+
+<small>
+
+    {{ achievement["description"] }}
+
+</small>
+
+
+<span class="achievement-earned-badge">
+
+    ✓ Earned
+
+</span>
+
+</div>
+
+{% endfor %}
+
+
+{% else %}
+
+
+<div class="no-achievements">
+
+<div class="no-achievements-icon">
+    🏅
+</div>
+
+<strong>
+    No achievements yet
+</strong>
+
+<p>
+    Complete lessons, practice speaking,
+    earn XP and maintain your learning streak
+    to unlock achievements.
+</p>
+
+</div>
+
+
+{% endif %}
+
+
+</div>
+
+</div>
+
+</div>
+
+
+
+<!-- =================================================
+     MOTIVATION
+     ================================================= -->
+
+<div class="motivation-card">
+
+<div class="motivation-icon">
+    🌱
+</div>
+
+<div>
+
+<h2>
+    {{ t("keep_going_title") }}
+</h2>
+
+<p>
+    {{ t("every_lesson_goal") }}
+</p>
+
+</div>
+
+<a href="/learn">
+    {{ t("continue_learning") }} →
+</a>
+
+</div>
+
+
+</div>
+
+
+</div>
+
+</div>
+
+
+</body>
+
+</html>
